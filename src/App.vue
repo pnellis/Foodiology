@@ -5,9 +5,6 @@ const showInput = () => {
   checked.value = !checked.value
 }
 </script>
-
-
-
 <template>
   <div>
     <h1>Foodiology</h1>
