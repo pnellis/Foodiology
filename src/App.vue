@@ -7,6 +7,7 @@ const showInput = () => {
 </script>
 
 
+
 <template>
   <div>
     <h1>Foodiology</h1>
