@@ -1,44 +1,58 @@
 <template>
-  <div>
-    <h1 class="mb-4">Foodiology</h1>
-    <div class="container">
-      <div class="btn-group">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select Ingredients
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Ingredient 1</a>
-          <a class="dropdown-item" href="#">Ingredient 2</a>
-          <a class="dropdown-item" href="#">Ingredient 3</a>
-          <!-- Add more items as needed -->
-        </div>
-      </div>
+  <div id="app">
+    <header>
+      <h1>Foodiology</h1>
+      <nav>
+        <router-link to="/">Home</router-link>
+        <router-link to="/login">Login</router-link>
+        <!-- Add more navigation links as needed -->
+      </nav>
+    </header>
 
-      <div class="form-check mt-3" v-if="checked">
-        <input class="form-check-input" type="checkbox" value="" id="checkbox1">
-        <label class="form-check-label" for="checkbox1">
-          Recipe Option 1
-        </label>
-      </div>
-      <div class="form-check" v-if="checked">
-        <input class="form-check-input" type="checkbox" value="" id="checkbox2">
-        <label class="form-check-label" for="checkbox2">
-          Recipe Option 2
-        </label>
-      </div>
+    <main>
+      <router-view></router-view>
+    </main>
 
-      <button class="btn btn-primary mt-3" @click="showInput">Search for Recipes</button>
-      <input v-if="checked" type="text" class="form-control mt-3" placeholder="Search for recipes...">
-    </div>
+    <footer>
+      <!-- Add footer content if needed -->
+    </footer>
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const checked = ref(false)
-
-const showInput = () => {
-  checked.value = !checked.value
+<style>
+#app {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
-</script>
+
+header {
+  background-color: #fabbe0;
+  color: white;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+main {
+  margin-top: 20px;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+</style>
