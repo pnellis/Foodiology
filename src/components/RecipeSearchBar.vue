@@ -4,7 +4,7 @@
     <div class="search-section">
       <form @submit.prevent="searchRecipes">
         <label for="search">Search:</label>
-        <input v-model="searchValue" id="search" class="input-field" placeholder="Enter ingredients" />
+        <input v-model="searchValue" id="search" class="input-field" placeholder="Enter ingredients with Space" />
         
       </form>
     </div>
@@ -23,12 +23,12 @@
         <label for="cuisineType">Cuisine Type:</label>
         <select v-model="cuisineType" class="select-field">
           <option value="">Select Cuisine</option>
-          <option value="italian">Italian</option>
-          <option value="mexican">Mexican</option>
-          <option value="chinese">Chinese</option>
-          <option value="korean">Korean</option>
-          <option value="indian">Indian</option>
-          <option value="french">French</option>
+          <option value="Italian">Italian</option>
+          <option value="Mexican">Mexican</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Korean">Korean</option>
+          <option value="Indian">Indian</option>
+          <option value="French">French</option>
           <!-- Add more options as needed -->
         </select>
       </div>
