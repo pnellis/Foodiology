@@ -1,5 +1,6 @@
 <template>
     <div>
+      <img :src="Logo" alt="Foodiology Logo" class="logo"/>
       <h2>Welcome to Foodiology!</h2>
       <p>Transforming Kitchen Confusion into Delicious Discoveries</p>
       <p>Discover delicious recipes based on your ingredients and preferences!</p>
@@ -11,6 +12,7 @@
   <script>
   import RecipeSearchBar from '@/components/RecipeSearchBar.vue';
   import RecipeList from '@/components/RecipeList.vue';
+  import Logo from '@/assets/logo.png';
   
   export default {
     components: {
@@ -19,8 +21,10 @@
     },
     data() {
       return {
-        searchedRecipes: []
+        searchedRecipes: [],
+        Logo: Logo
       };
+      
     },
     methods: {
       searchRecipes(ingredients) {
@@ -32,5 +36,13 @@
       }
     }
   };
+  
   </script>
+
+<style scoped>
+.logo {
+  width: auto; /* Adjust the width to your preferred size */
+  height: 100px; /* Maintain the aspect ratio */
+}
+</style>
   
