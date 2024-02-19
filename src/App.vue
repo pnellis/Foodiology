@@ -46,8 +46,6 @@ export default {
 #app {
   font-family: 'Arial', sans-serif;
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
   padding: 20px;
 }
 
