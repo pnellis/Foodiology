@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <header>
-      <h1>Foodiology</h1>
+      <!-- <h1>Foodiology</h1> -->
+      <img :src="Logo" alt="Foodiology Logo" class="logo"/>
+      <img src="@/assets/foodiology.png" alt="Foodiology Logo" class = "logo">
       <nav>
         <router-link to="/">Home</router-link>
         <router-link to="/login">Login</router-link>
@@ -19,7 +21,28 @@
   </div>
 </template>
 
+<script>
+import Logo from '@/assets/logo.png';
+import foodiology from '@/assets/foodiology.png';
+export default {
+    
+    data() {
+      return {
+        Logo: Logo,
+        foodiology: foodiology
+      };
+  
+      
+    },
+    
+  };
+</script>
+
 <style>
+.logo {
+  width: auto; /* Adjust the width to your preferred size */
+  height: 100px; /* Maintain the aspect ratio */
+}
 #app {
   font-family: 'Arial', sans-serif;
   text-align: center;
@@ -29,7 +52,7 @@
 }
 
 header {
-  background-color: #fabbe0;
+  background-color: #f792ac;
   color: white;
   padding: 20px;
 }

@@ -5,7 +5,7 @@
       <form @submit.prevent="searchRecipes">
         <label for="search">Search:</label>
         <input v-model="searchValue" id="search" class="input-field" placeholder="Enter ingredients" />
-        <button type="submit" class="search-button">Search</button>
+        
       </form>
     </div>
     <div class="filter-sections">
@@ -117,7 +117,7 @@ export default {
 
 .search-button {
   padding: 12px;
-  background-color: #fabbe0;
+  background-color: #f792ac;
   color: white;
   border: none;
   cursor: pointer;
@@ -126,6 +126,6 @@ export default {
 }
 
 .search-button:hover {
-  background-color: #45a049;
+  background-color: #ba3850;
 }
 </style>
