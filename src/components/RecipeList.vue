@@ -38,7 +38,7 @@
   
   .details-button {
     padding: 5px;
-    background-color: #fabbe0;
+    background-color: #f792ac;
     color: white;
     border: none;
     cursor: pointer;
