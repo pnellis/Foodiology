@@ -33,22 +33,22 @@
   <style scoped>
   /* Add component-specific styles if needed */
   form {
-    max-width: 300px;
+    max-width: 400px;
     margin: 20px auto;
-    padding: 15px;
+    padding: 25px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
   }
   
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
   }
   
   input {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
   }
   
   button {

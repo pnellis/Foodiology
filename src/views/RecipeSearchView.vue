@@ -8,6 +8,8 @@
   <script>
   import RecipeSearchBar from '@/components/RecipeSearchBar.vue';
   import RecipeList from '@/components/RecipeList.vue';
+
+  import Logo from '@/assets/logo.png';
   
   export default {
     components: {
@@ -16,7 +18,8 @@
     },
     data() {
       return {
-        searchedRecipes: []
+        searchedRecipes: [],
+        Logo: Logo
       };
     },
     methods: {
