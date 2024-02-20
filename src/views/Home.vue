@@ -10,29 +10,16 @@
   
   <script>
   import RecipeSearchBar from '@/components/RecipeSearchBar.vue';
-  import RecipeList from '@/components/RecipeList.vue';
   
   export default {
     components: {
-      RecipeSearchBar,
-      RecipeList
+      RecipeSearchBar
     },
     data() {
       return {
         searchedRecipes: [],
       };
-  
-      
     },
-    methods: {
-      searchRecipes(ingredients) {
-        // Call backend API to get recipes based on ingredients
-        // Update searchedRecipes data property
-      },
-      viewRecipeDetails(recipeId) {
-        // Navigate to the recipe details page or show a modal
-      }
-    }
   };
   
   </script>

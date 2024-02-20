@@ -1,15 +1,16 @@
-<template>
+ <template>
     <div>
-      <h2>Login to Foodiology</h2>
-      <form @submit.prevent="login">
+      <h2 class="title">Login to Foodiology</h2>
+      <form @submit.prevent="login" class="login-form">
         <label for="username">Username:</label>
         <input type="text" v-model="username" required>
   
         <label for="password">Password:</label>
         <input type="password" v-model="password" required>
   
-        <button  type="submit">Login</button>
+        <button type="submit">Login</button>
       </form>
+      <router-link to="/create-account" class="create-account-link">Create an Account</router-link>
     </div>
   </template>
   
@@ -32,24 +33,32 @@
   
   <style scoped>
   /* Add component-specific styles if needed */
-  form {
+  .title {
+    text-align: center;
+    color: #333;
+  }
+  
+  .login-form {
     max-width: 400px;
     margin: 20px auto; 
     padding: 25px;
     border: 1px solid #ccc;
     border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   label {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
   }
   
   input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px; 
-    text-align: center;
+    box-sizing: border-box;
   }
   
   button {
@@ -61,8 +70,18 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  button:hover {
-  background-color: #ba3850;
-}
-  </style>
   
+  button:hover {
+    background-color: #ba3850;
+  }
+  
+  .create-account-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  </style>
+   
