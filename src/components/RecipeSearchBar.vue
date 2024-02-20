@@ -48,7 +48,7 @@
 export default {
   data() {
     return {
-      ingredients: '',
+      searchValue: '',
       dietaryPreferencesType: '',
       cuisineType: '',
       mealType: ''
