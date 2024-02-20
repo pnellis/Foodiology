@@ -16,7 +16,6 @@
           <option value="vegetarian">Vegetarian</option>
           <option value="vegan">Vegan</option>
           <option value="dairyfree">Dairy-Free</option>
-          <!-- Add more options as needed -->
         </select>
       </div>
       <div class="filter-section">
@@ -29,7 +28,6 @@
           <option value="Korean">Korean</option>
           <option value="Indian">Indian</option>
           <option value="French">French</option>
-          <!-- Add more options as needed -->
         </select>
       </div>
       <div class="filter-section">
