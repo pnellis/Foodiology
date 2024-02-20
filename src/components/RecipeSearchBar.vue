@@ -4,7 +4,7 @@
     <div class="search-section">
       <form @submit.prevent="searchRecipes">
         <label for="search">Search:</label>
-        <input v-model="searchValue" id="search" class="input-field" placeholder="Enter ingredients" />
+        <input v-model="searchValue" id="search" class="input-field" placeholder="Enter ingredients with Space" />
         
       </form>
     </div>
