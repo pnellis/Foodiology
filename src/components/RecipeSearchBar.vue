@@ -7,6 +7,7 @@
         <div class="search-section">
           <label for="search">Type in your ingredients:</label>
           <input v-model="searchValue" id="search" class="input-field" placeholder="Enter ingredients with Space" />
+          
         </div>
         <div class="filter-section">
         <label for="dietaryPreferencesType">Dietary Preferences:</label>
@@ -61,9 +62,9 @@
       </div>
       </form>
     </div>
- 
+    <button @click="searchRecipes" class="search-button">Search</button>
   <div id="results"></div>
-        <button @click="searchRecipes" class="search-button">Search</button>
+        
 
   </div>
 </template>
