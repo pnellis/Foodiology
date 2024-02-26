@@ -43,9 +43,9 @@
                  <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/test.jpeg" alt="test"/>
+                            <img src="@/assets/cristina.jpg" alt="test"/>
                         </div>
-                        <h3>Cristina</h3>
+                        <h3>Cristina Ramirez Vinaja</h3>
                         <p>B.S. Computer Science</p>
                         <div class="icons">
                             <a href="https://www.linkedin.com/in/cristinaram?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">
@@ -64,7 +64,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/test.jpeg" alt="test"/>
+                            <img src="@/assets/carol.jpeg" alt="test"/>
                         </div>
                         <h3>Carol (Zijing) Zhou</h3>
                         <p>B.S. Biology and Quantitative Science (Informatics) </p>
