@@ -1,9 +1,11 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr; /* Single full-width column */
+  max-width: none; /* No maximum width constraint */
+  margin: 0 auto; /* Centered horizontally */
+  /* padding: 2rem; Padding on all sides */
   font-weight: normal;
 }
 
@@ -27,9 +29,4 @@ a,
     place-items: center;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
 }
