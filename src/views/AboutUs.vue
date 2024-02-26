@@ -25,9 +25,9 @@
                             <img src="@/assets/test.jpeg" alt="test"/>
                         </div>
                         <h3>Page</h3>
-                        <p>B.S. Computer Science</p>
+                        <p>B.S. Quantitative Sciences and Informatics</p>
                         <div class="icons">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/page-nellis?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">
                                 <i class="fab fa-linkedin"></i>
                             </a>
                             <a href="https://github.com/pnellis" target="_blank">
@@ -48,7 +48,7 @@
                         <h3>Cristina</h3>
                         <p>B.S. Computer Science</p>
                         <div class="icons">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/cristinaram?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">
                                 <i class="fab fa-linkedin"></i>
                             </a>
                             <a href="https://github.com/cristinar07" target="_blank">
@@ -66,10 +66,10 @@
                         <div class="img-container">
                             <img src="@/assets/test.jpeg" alt="test"/>
                         </div>
-                        <h3>Carol Zhou</h3>
-                        <p>B.S. Computer Science</p>
+                        <h3>Carol (Zijing) Zhou</h3>
+                        <p>B.S. Biology and Quantitative Science (Informatics) </p>
                         <div class="icons">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/zijing-zhou-b674601b6/" target="_blank">
                                 <i class="fab fa-linkedin"></i>
                             </a>
                             <a href="https://github.com/zz-carol" target="_blank">
@@ -90,7 +90,7 @@
                         <h3>Audrey Poon</h3>
                         <p>B.S. Computer Science</p>
                         <div class="icons">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/audrey-p-6b957a1b2/" target="_blank">
                                 <i class="fab fa-linkedin"></i>
                             </a>
                             <a href="https://github.com/audreyp00n" target="_blank">
@@ -109,10 +109,10 @@
                         <div class="img-container">
                             <img src="@/assets/test.jpeg" alt="test"/>
                         </div>
-                        <h3>Katie</h3>
-                        <p>B.S. Computer Science</p>
+                        <h3>Katie (Mingchen) Shao</h3>
+                        <p>B.S. Applied Math & Statistics and Computer Science</p>
                         <div class="icons">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/mingchen-shao-30309a246/" target="_blank">
                                 <i class="fab fa-linkedin"></i>
                             </a>
                             <a href="https://github.com/KatieShao" target="_blank">
