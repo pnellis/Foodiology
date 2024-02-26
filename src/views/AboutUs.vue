@@ -45,7 +45,7 @@
                         <div class="img-container">
                             <img src="@/assets/cristina.jpg" alt="test"/>
                         </div>
-                        <h3>Cristina Ramirez Vinaja</h3>
+                        <h3>Cristina Ramirez Vinaja! </h3>
                         <p>B.S. Computer Science</p>
                         <div class="icons">
                             <a href="https://www.linkedin.com/in/cristinaram?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">
