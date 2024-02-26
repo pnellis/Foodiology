@@ -22,7 +22,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/test.jpeg" alt="test"/>
+                            <img src="@/assets/page.jpg" alt="test"/>
                         </div>
                         <h3>Page</h3>
                         <p>B.S. Quantitative Sciences and Informatics</p>

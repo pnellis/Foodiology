@@ -7,7 +7,7 @@
       <nav>
         <router-link to="/">Home</router-link>
         <router-link to="/">Community</router-link>
-        <router-link to="/AboutUs">About Us</router-link>>
+        <router-link to="/AboutUs">About Us</router-link>
         <router-link to="/login">Login</router-link>
 
 
