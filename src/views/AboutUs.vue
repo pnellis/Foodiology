@@ -107,7 +107,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/test.jpeg" alt="test"/>
+                            <img src="@/assets/Katie.jpg" alt="test"/>
                         </div>
                         <h3>Katie (Mingchen) Shao</h3>
                         <p>B.S. Applied Math & Statistics and Computer Science</p>
