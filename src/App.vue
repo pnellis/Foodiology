@@ -6,7 +6,9 @@
       <img src="@/assets/foodiology.png" alt="Foodiology Logo" class = "logo">
       <nav>
         <router-link to="/">Home</router-link>
+        <router-link to="/AboutUs">About Us</router-link>>
         <router-link to="/login">Login</router-link>
+
         <!-- Add more navigation links as needed -->
       </nav>
     </header>

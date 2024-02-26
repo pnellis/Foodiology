@@ -167,6 +167,6 @@ export default {
 }
 
 .search-button:hover {
-  background-color: #ba3850;
+  background-color: #6bd4d3;
 }
 </style>
