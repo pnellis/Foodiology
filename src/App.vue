@@ -69,6 +69,10 @@ nav a {
   font-weight: bold;
 }
 
+nav a:hover {
+  color: #6bd4d3; /* Change the color to your preferred hover color */
+}
+
 main {
   margin-top: 20px;
 }
