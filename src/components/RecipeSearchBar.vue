@@ -39,10 +39,11 @@
         </div>
       </form>
     </div>
+        
+  <div id="results"></div>
+  <button @click="searchRecipes" class="search-button">Search</button>
+
   
-    <div id="results"></div>
-        <button @click="searchRecipes" class="search-button">Search</button>
-      
   </div>
 </template>
 
@@ -72,16 +73,35 @@ export default {
       <ul>
         ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
       </ul>
-      <a href="${recipe.recipe.url}" target="_blank">View Recipe</a>
+      <a href="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
     </div> 
     `;
   });
   document.getElementById('results').innerHTML = html;
 }
   }
-};
+  };
+
 </script>
+
 <style scoped>
+.recipe-button {
+  display: inline-block; /* Allows setting padding and margins */
+  padding: 10px 15px; /* Adjust the padding to your liking */
+  background-color: #784caf; /* Example button color, change as desired */
+  color: rgb(69, 36, 36); /* Text color */
+  text-align: center;
+  text-decoration: none; /* Removes underline from links */
+  border: none; /* Removes border */
+  border-radius: 5px; /* Optional: rounds the corners */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  margin-top: 10px; /* Space above the button */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.recipe-button:hover {
+  background-color: #454ca0; /* Darker shade for hover effect */
+}
 
 #results {
   display: flex;
