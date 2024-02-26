@@ -1,16 +1,15 @@
- <template>
+<template>
     <div>
-      <h2 class="title">Login to Foodiology</h2>
-      <form @submit.prevent="login" class="login-form">
+      <h2 class="title">Create an Account</h2>
+      <form @submit.prevent="create" class="create-form">
         <label for="username">Username:</label>
         <input type="text" v-model="username" required>
   
         <label for="password">Password:</label>
         <input type="password" v-model="password" required>
   
-        <button type="submit">Login</button>
+        <button type="submit">Create</button>
       </form>
-      <router-link to="/create-account" class="create-account-link">Create an Account</router-link>
     </div>
   </template>
   
@@ -23,9 +22,9 @@
       };
     },
     methods: {
-      login() {
+      create() {
         // You can add login logic here, for now, just log the credentials
-        console.log('Login with:', this.username, this.password);
+        console.log('Create with:', this.username, this.password);
       }
     }
   };
@@ -38,7 +37,7 @@
     color: #333;
   }
   
-  .login-form {
+  .create-form {
     max-width: 400px;
     margin: 20px auto; 
     padding: 25px;
@@ -72,16 +71,7 @@
   }
   
   button:hover {
-    background-color: #6bd4d3;
-  }
-  
-  .create-account-link {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
+    background-color: #ba3850;
   }
   </style>
    

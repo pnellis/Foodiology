@@ -7,8 +7,10 @@
       <nav>
         <router-link to="/">Home</router-link>
         <router-link to="/">Community</router-link>
+        <router-link to="/AboutUs">About Us</router-link>>
         <router-link to="/login">Login</router-link>
-        <router-link to="/login">About Us</router-link>
+
+
         <!-- Add more navigation links as needed -->
       </nav>
     </header>
@@ -82,6 +84,15 @@ nav a {
   color: rgb(134, 212, 208);
   font-size: 25px;
   font-weight: bold;
+}
+
+
+nav a:hover {
+  color: #6bd4d3; /* Change the color to your preferred hover color */
+}
+
+main {
+  margin-top: 20px;
 }
 
 
