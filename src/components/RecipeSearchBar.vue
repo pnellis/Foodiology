@@ -7,7 +7,6 @@
         <div class="search-section">
           <label for="search">Type in your ingredients:</label>
           <input v-model="searchValue" id="search" class="input-field" placeholder="Enter ingredients with Space" />
-          
         </div>
         <div class="filter-section">
         <label for="dietaryPreferencesType">Dietary Preferences:</label>
@@ -55,7 +54,8 @@
         <select v-model="mealType" class="select-field">
           <option value="">Select Meal Type</option>
           <option value="breakfast">breakfast</option>
-          <option value="lunch/dinner">lunch/dinner</option>
+          <option value="lunch">lunch</option>
+          <option value="dinner">dinner</option>
           <option value="snack">snack</option>
           <option value="teatime">teatime</option>
         </select>
@@ -64,7 +64,6 @@
     </div>
     <button @click="searchRecipes" class="search-button">Search</button>
   <div id="results"></div>
-        
 
   </div>
 </template>
@@ -80,31 +79,31 @@ export default {
     };
   },
   methods: {
-  async searchRecipes() {
-  let baseUrl = `https://api.edamam.com/api/recipes/v2`;
-  let app_id = `6c7cf088`;
-  let app_key = `e7750c557637054d9401d486453748b9`;
-  // base query parameters
-  let queryParams = `?type=public&q=${encodeURIComponent(this.searchValue)}&app_id=${app_id}&app_key=${app_key}`;
+    async searchRecipes() {
+    let baseUrl = `https://api.edamam.com/api/recipes/v2`;
+    let app_id = `6c7cf088`;
+    let app_key = `e7750c557637054d9401d486453748b9`;
+    // base query parameters
+    let queryParams = `?type=public&q=${encodeURIComponent(this.searchValue)}&app_id=${app_id}&app_key=${app_key}`;
 
 
-  if (this.dietaryPreferencesType) {
-    queryParams += `&cuisineType=${encodeURIComponent(this.dietaryPreferencesType)}`;
-  }
-  if (this.mealType) {
-    queryParams += `&mealType=${encodeURIComponent(this.mealType)}`;
-  }
-  if (this.cuisineType) {
-    queryParams += `&cuisineType=${encodeURIComponent(this.cuisineType)}`;
-  }
+    if (this.dietaryPreferencesType) {
+      queryParams += `&health=${encodeURIComponent(this.dietaryPreferencesType)}`;
+    }
+    if (this.mealType) {
+      queryParams += `&mealType=${encodeURIComponent(this.mealType)}`;
+    }
+    if (this.cuisineType) {
+      queryParams += `&cuisineType=${encodeURIComponent(this.cuisineType)}`;
+    }
 
-  const response = await fetch(baseUrl + queryParams);
-  
-  const data = await response.json();
+    const response = await fetch(baseUrl + queryParams);
+    
+    const data = await response.json();
 
-  console.log(data)
-  this.displayRecipes(data.hits);
-    },
+    console.log(data)
+    this.displayRecipes(data.hits);
+      },
     displayRecipes(recipes) {
   let html = '';
   recipes.forEach((recipe) => {
@@ -223,6 +222,7 @@ export default {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 10px;
   transition: background-color 0.3s;
 }
 
