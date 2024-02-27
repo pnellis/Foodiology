@@ -170,6 +170,8 @@ h1 {
     cursor: pointer;
     transition: 0.3s;
     background-color: #ffebf0;
+    height: 400px;
+    width: 400px;
 }
 .card .img-container {
     width: 8em;
