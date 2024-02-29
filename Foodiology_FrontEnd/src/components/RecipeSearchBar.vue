@@ -10,7 +10,7 @@
         </div>
         <div class="filter-section">
         <label for="dietaryPreferencesType">Dietary Preferences:</label>
-        <select v-model="dietaryPreferencesType" class="select-field">
+        <select v-model="dietaryPreferencesType" class="select-field" multiple>
           <option value="">Select Dietary Preferences</option>
           <option value="vegetarian">vegetarian</option>
           <option value="vegan">vegan</option>
@@ -73,7 +73,7 @@ export default {
   data() {
     return {
       searchValue: '',
-      dietaryPreferencesType: '',
+      dietaryPreferencesType: [],
       cuisineType: '',
       mealType: ''
     };
@@ -87,8 +87,10 @@ export default {
     let queryParams = `?type=public&q=${encodeURIComponent(this.searchValue)}&app_id=${app_id}&app_key=${app_key}`;
 
 
-    if (this.dietaryPreferencesType) {
-      queryParams += `&health=${encodeURIComponent(this.dietaryPreferencesType)}`;
+    if (this.dietaryPreferencesType.length) {
+        this.dietaryPreferencesType.forEach((diet) => {
+          queryParams += `&health=${encodeURIComponent(diet)}`;
+        });
     }
     if (this.mealType) {
       queryParams += `&mealType=${encodeURIComponent(this.mealType)}`;
