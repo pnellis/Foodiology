@@ -105,23 +105,23 @@ export default {
     this.displayRecipes(data.hits);
       },
     displayRecipes(recipes) {
-  let html = '';
-  recipes.forEach((recipe) => {
-    html += `
-    <div class="recipe-card">
-      <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
-      <h3>${recipe.recipe.label}</h3>
-      <ul>
-        ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
-      </ul>
-      <a href="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
-    </div> 
-    `;
-  });
-  document.getElementById('results').innerHTML = html;
-}
+    let html = '';
+    recipes.forEach((recipe) => {
+      html += `
+      <div class="recipe-card">
+        <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
+        <h3>${recipe.recipe.label}</h3>
+        <ul>
+          ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
+        </ul>
+        <a href="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
+      </div> 
+      `;
+    });
+    document.getElementById('results').innerHTML = html;
+   }
   }
-  };
+};
 
 </script>
 
