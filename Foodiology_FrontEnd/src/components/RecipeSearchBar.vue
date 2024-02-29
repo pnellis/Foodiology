@@ -85,12 +85,12 @@ export default {
     let app_key = `e7750c557637054d9401d486453748b9`;
     // base query parameters
     let queryParams = `?type=public&q=${encodeURIComponent(this.searchValue)}&app_id=${app_id}&app_key=${app_key}`;
-
-
     if (this.dietaryPreferencesType.length) {
         this.dietaryPreferencesType.forEach((diet) => {
           queryParams += `&health=${encodeURIComponent(diet)}`;
         });
+
+    
     }
     if (this.mealType) {
       queryParams += `&mealType=${encodeURIComponent(this.mealType)}`;
