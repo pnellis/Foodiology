@@ -64,7 +64,7 @@
     </div>
     <button @click="searchRecipes" class="search-button">Search</button>
   <div id="results"></div>
-
+    <div id="recipe-card"></div>
   </div>
 </template>
 
@@ -107,66 +107,32 @@ export default {
     this.displayRecipes(data.hits);
       },
     displayRecipes(recipes) {
-    let html = '';
-    recipes.forEach((recipe) => {
-      html += `
-      <div class="recipe-card">
-        <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
-        <h3>${recipe.recipe.label}</h3>
-        <ul>
-          ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
-        </ul>
-        <a href="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
-      </div> 
-      `;
-    });
-    document.getElementById('results').innerHTML = html;
-   }
+  let html = '';
+  recipes.forEach((recipe) => {
+    html += `
+    <div class="recipe-card">
+      <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
+      <h3>${recipe.recipe.label}</h3>
+      <ul>
+        ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
+      </ul>
+      <a href="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
+    </div> 
+    `;
+  });
+  document.getElementById('results').innerHTML = html;
+}
   }
 };
 
 </script>
 
 <style scoped>
-.recipe-button {
-  display: inline-block; /* Allows setting padding and margins */
-  padding: 10px 15px; /* Adjust the padding to your liking */
-  background-color: #784caf; /* Example button color, change as desired */
-  color: rgb(69, 36, 36); /* Text color */
-  text-align: center;
-  text-decoration: none; /* Removes underline from links */
-  border: none; /* Removes border */
-  border-radius: 5px; /* Optional: rounds the corners */
-  cursor: pointer; /* Changes cursor to pointer on hover */
-  margin-top: 10px; /* Space above the button */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
-}
-
-.recipe-button:hover {
-  background-color: #454ca0; /* Darker shade for hover effect */
-}
 
 #results {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; /* This will space out the items evenly */
-  gap: 20px; /* This adds space between the items */
-}
-
-.recipe-card {
-  flex: 0 1 calc(33.333% - 20px); /* Take up one-third minus gap */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center-align the items for aesthetic purposes */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds a slight shadow for depth */
-  padding: 10px;
-  margin-bottom: 20px; /* Space at the bottom of each card */
-}
-
-.recipe-card img {
-  width: 100%; /* Make images responsive within the card */
-  height: auto;
-  border-radius: 5px; /* Optional: rounds the corners of the images */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
+  gap: 20px; /*  add space between the s */
 }
 
 .combined-search {
