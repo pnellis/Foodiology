@@ -63,8 +63,10 @@
       </form>
     </div>
     <button @click="searchRecipes" class="search-button">Search</button>
-  <div id="results"></div>
-    <div id="recipe-card"></div>
+  <div id="results">
+    
+  </div>
+
   </div>
 </template>
 
@@ -110,7 +112,7 @@ export default {
   let html = '';
   recipes.forEach((recipe) => {
     html += `
-    <div class="card">
+    <div class="recipe-card">
       <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
       <h3>${recipe.recipe.label}</h3>
       <ul>
@@ -127,12 +129,39 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
 
 #results {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
-  gap: 20px; /*  add space between the s */
+  gap: 40px; /*  add space between the s */
+}
+
+.recipe-card {
+  border: 1px solid #edd5db9f; /* Adds a border around the card */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
+  border-radius: 10px; /* Rounds the corners of the card */
+  background-color: #edd5db9f; /* Set background */
+
+}
+
+.recipe-card:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Enhances the shadow when hovered */
+}
+
+.recipe-card img {
+  width: 70%; /* Makes the image fill the card width */
+  border-radius: 10px 10px 10px 10px; /* Rounds the top left, top right, bottom left, bottom right */
+}
+
+.recipe-card h3 {
+  font-size: 2em; 
+  font-weight: bold;
+  margin-top: 20px; /* Adds space above the title */
+}
+
+.recipe-card li {
+  margin-bottom: 10px; /* Adds space between list items */
 }
 
 .combined-search {

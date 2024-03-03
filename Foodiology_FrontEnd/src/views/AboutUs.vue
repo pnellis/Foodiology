@@ -88,7 +88,7 @@
                             <img src="@/assets/audrey.jpg" alt="test"/>
                         </div>
                         <h3>Audrey Poon</h3>
-                        <p>B.S. Computer Science</p>
+                        <p>B.S. Math & Computer Science</p>
                         <div class="icons">
                             <a href="https://www.linkedin.com/in/audrey-p-6b957a1b2/" target="_blank">
                                 <i class="fab fa-linkedin"></i>
