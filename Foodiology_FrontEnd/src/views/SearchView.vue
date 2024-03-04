@@ -76,7 +76,7 @@
 
 <script>
 import RecommendedRecipes from '../components/RecommendedRecipes.vue'
-import TrendingRecipes from '../components/TrendingRecipes.vue';
+import TrendingRecipes from '../components/TrendingRecipes.vue'
 
 export default {
     name: 'SearchView',
