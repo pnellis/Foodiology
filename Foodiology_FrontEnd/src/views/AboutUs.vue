@@ -1,7 +1,6 @@
 <template>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Responsive Our Team Section</title>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -22,7 +21,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/page.jpg" alt="test"/>
+                            <img src="@/assets/page.jpg" alt="page"/>
                         </div>
                         <h3>Page</h3>
                         <p>B.S. Quantitative Sciences and Informatics</p>
@@ -43,7 +42,7 @@
                  <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/cristina.jpg" alt="test"/>
+                            <img src="@/assets/cristina.jpg" alt="cristina"/>
                         </div>
                         <h3>Cristina Ramirez Vinaja</h3>
                         <p>B.S. Computer Science</p>
@@ -64,7 +63,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/carol.jpeg" alt="test"/>
+                            <img src="@/assets/carol.jpeg" alt="carol"/>
                         </div>
                         <h3>Carol (Zijing) Zhou</h3>
                         <p>B.S. Biology and Quantitative Science (Informatics) </p>
@@ -85,7 +84,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/audrey.jpg" alt="test"/>
+                            <img src="@/assets/audrey.jpg" alt="audrey"/>
                         </div>
                         <h3>Audrey Poon</h3>
                         <p>B.S. Math & Computer Science</p>
@@ -107,7 +106,7 @@
                 <div class="column">
                     <div class="card">
                         <div class="img-container">
-                            <img src="@/assets/Katie.jpg" alt="test"/>
+                            <img src="@/assets/Katie.jpg" alt="katie"/>
                         </div>
                         <h3>Katie (Mingchen) Shao</h3>
                         <p>B.S. Applied Math & Statistics and Computer Science</p>
@@ -134,15 +133,18 @@
 </template>
 
 <style scoped>
+/* make all the elements have no margin or padding and sets font */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+/* set background color */
 body {
     background-color: #fcb4c6;
 }
+/* make cards show in multiple rows */
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -150,8 +152,9 @@ body {
     padding: 1em 1em;
     text-align: center;
 }
+/* Divide into 3 columns  */
 .column {
-    flex: 0 0 calc(33.33% - 20px); /* Divide container into 3 columns  */
+    flex: 0 0 calc(33.33% - 20px); 
     max-width: calc(33.33% - 20px);
     padding: 1em;
 }
