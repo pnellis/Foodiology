@@ -1,3 +1,5 @@
+<!--  -->
+
 <template>
   <div class="recipe-search-bar">
     <div class="combined-search">
@@ -62,7 +64,7 @@
     </div>
     <button @click="searchRecipes" class="search-button">Search</button>
   <div id="results"></div>
-  <div id="recipe-card"></div>
+    <div id="recipe-card"></div>
   </div>
 </template>
 
@@ -85,7 +87,7 @@ export default {
     let queryParams = `?type=public&q=${encodeURIComponent(this.searchValue)}&app_id=${app_id}&app_key=${app_key}`;
     if (this.dietaryPreferencesType.length) {
         this.dietaryPreferencesType.forEach((diet) => {
-          queryParams += `&Health=${encodeURIComponent(diet)}`;
+          queryParams += `&health=${encodeURIComponent(diet)}`;
         });
 
     
@@ -114,7 +116,7 @@ export default {
       <ul>
         ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
       </ul>
-      <a href ="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
+      <a href="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
     </div> 
     `;
   });
@@ -125,29 +127,7 @@ export default {
 
 </script>
 
-<style >
-.recipe-card ul {
-  list-style-type: none; /* This removes the bullets */
-  padding-left: 0; /* This removes the padding where bullets would normally be */
-}
-
-.recipe-button {
-  background-color: rgb(134, 212, 208); /* Green background */
-  color: rgb(255, 255, 255); /* White text */
-  padding: 10px 20px; /* Some padding */
-  text-align: center; /* Centered text */
-  text-decoration: none; /* No underline */
-  display: inline-block; /* Needed for padding and background color */
-  font-size: 16px; /* Font size */
-  margin: 4px 2px; /* Some margin */
-  cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 5px; /* Rounded corners */
-}
-
-.recipe-button:hover {
-  background-color: rgb(52, 136, 131); /* Darker shade of green on hover */
-}
-
+<style scoped>
 
 #results {
   display: grid;
