@@ -85,7 +85,7 @@ export default {
     let queryParams = `?type=public&q=${encodeURIComponent(this.searchValue)}&app_id=${app_id}&app_key=${app_key}`;
     if (this.dietaryPreferencesType.length) {
         this.dietaryPreferencesType.forEach((diet) => {
-          queryParams += `&Health=${encodeURIComponent(diet)}`;
+          queryParams += `&health=${encodeURIComponent(diet)}`;
         });
 
     
