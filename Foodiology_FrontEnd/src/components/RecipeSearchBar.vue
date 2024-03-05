@@ -152,34 +152,7 @@ export default {
 #results {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Creates 3 columns */
-  gap: 40px; /*  add space between the s */
-}
-
-.recipe-card {
-  border: 1px solid #edd5db9f; /* Adds a border around the card */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
-  border-radius: 10px; /* Rounds the corners of the card */
-  background-color: #edd5db9f; /* Set background */
-
-}
-
-.recipe-card:hover {
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Enhances the shadow when hovered */
-}
-
-.recipe-card img {
-  width: 70%; /* Makes the image fill the card width */
-  border-radius: 10px 10px 10px 10px; /* Rounds the top left, top right, bottom left, bottom right */
-}
-
-.recipe-card h3 {
-  font-size: 2em; 
-  font-weight: bold;
-  margin-top: 20px; /* Adds space above the title */
-}
-
-.recipe-card li {
-  margin-bottom: 10px; /* Adds space between list items */
+  gap: 20px; /*  add space between the s */
 }
 
 .combined-search {
