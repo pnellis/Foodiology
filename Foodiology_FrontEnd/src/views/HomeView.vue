@@ -1,7 +1,7 @@
 <template>
   <main>
+    
     <div class="welcome-container">
-      <!-- <img src="@/assets/HomePhoto.jpg" alt="Delicious food" class="home-photo"> -->
       <h1>Welcome to Foodiology!</h1>
       <p>Discover, Share, and Enjoy Amazing Recipes.</p>
       <RouterLink to="/search" class="search-button">
@@ -21,19 +21,30 @@ main {
   height: 100vh;
 }
 .welcome-container {
+  /* text-align: center;
+  max-width: 600px; */
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Adjust the height as needed */
+  background-image: url('@/assets/HomePhoto.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  max-width: 600px;
 }
 h1 {
   font-size: 3rem;
   margin-bottom: 16px;
-  color: #4c51bf;
+  color: #ffffff;
 }
 
 p {
   font-size: 1.5rem;
   margin-bottom: 24px;
-  color: #6b7280;
+  color: #ffffff;
 }
 
 .search-button {
@@ -42,7 +53,7 @@ p {
   justify-content: center;
   padding: 12px 24px;
   font-size: 1.25rem;
-  background-color: #6b7280;
+  background-color: #D53F8C;
   color: white;
   text-decoration: none;
   border-radius: 8px;
