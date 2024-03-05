@@ -1,6 +1,7 @@
 <template>
   <main>
     <div class="welcome-container">
+      <!-- <img src="@/assets/HomePhoto.jpg" alt="Delicious food" class="home-photo"> -->
       <h1>Welcome to Foodiology!</h1>
       <p>Discover, Share, and Enjoy Amazing Recipes.</p>
       <RouterLink to="/search" class="search-button">
@@ -50,6 +51,16 @@ p {
 
 .search-button:hover {
   background-color: #4c51bf;
+}
+
+.home-background {
+  background-image: url("@/assets/HomePhoto.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200vh; /* Adjust the height as needed */
+  margin: 0;
+  padding: 0;
 }
 
 </style>

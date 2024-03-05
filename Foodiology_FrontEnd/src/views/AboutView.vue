@@ -217,13 +217,16 @@ h1 {
   transform: scale(1.15);
 }
 /* fit different devices */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 770px) {
   section {
       padding: 1em 7em;
   }
   .column {
-      flex: 0 0 calc(33.33% - 2em);
-      max-width: calc(33.33% - 2em);
+      
+    flex: 0 0 calc(33.33% - 20px); 
+    max-width: calc(33.33% - 20px);
+    padding: 1em;
+    margin: 10px; /* Adjust this value to set the margin between columns */
   }
 }
 </style>
