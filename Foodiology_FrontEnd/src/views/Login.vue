@@ -2,7 +2,7 @@
     <div>
       <h2 class="title">Login to Foodiology</h2>
       <form @submit.prevent="login" class="login-form">
-        <label for="username">Username:</label>
+        <label for="username">User</label>
         <input type="text" v-model="username" required>
   
         <label for="password">Password:</label>
@@ -32,6 +32,12 @@
   </script>
   
   <style scoped>
+
+
+/* ... existing styles ... */
+
+
+
   /* Add component-specific styles if needed */
   .title {
     text-align: center;
