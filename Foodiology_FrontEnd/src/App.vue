@@ -3,7 +3,10 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between">
                 <div class="menu-left">
-                    <a href="#" class="text-xl">Foodiology</a>
+                    <!-- <a href="#" class="text-xl">Foodiology</a> -->
+                    <a href="#" class="text-xl">
+                        <img src="@/assets/foodiology.png" alt="Foodiology Logo" class="logo-image">
+                      </a>
                 </div>
 
                 <div class="menu-center flex space-x-12" v-if="userStore.user.isAuthenticated">
@@ -35,13 +38,13 @@
                 <div class="menu-right">
                     <template v-if="userStore.user.isAuthenticated">
                         <a href="#">
-                            <img src="https://i.pravatar.cc/40?img=70" class="rounded-full">
+                            <img src="@/assets/logocat.png" class="rounded-full" style="width: 30px; height: 30px;">
                         </a>
                     </template>
 
                     <template v-else>
                         <RouterLink to="/login" class="mr-4 py-4 px-6 bg-gray-600 text-white rounded-lg">Log in</RouterLink>
-                        <RouterLink to="/signup" class="py-4 px-6 bg-purple-600 text-white rounded-lg">Sign up</RouterLink>
+                        <RouterLink to="/signup" class="py-4 px-6 bg-pink-600 text-white rounded-lg">Sign up</RouterLink>
                     </template>
                 </div>
             </div>

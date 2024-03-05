@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
         <div class="main-left col-span-1">
             <div class="p-4 bg-white border border-gray-200 text-center rounded-lg">
-                <img src="@/assets/logo copy.png" class="mb-6 rounded-full">
+                <img src="@/assets/logocat.png" class="mb-6 rounded-full">
                 
                 <p><strong>Your Name</strong></p>
 
@@ -15,7 +15,7 @@
 
         <div class="main-center col-span-2 space-y-4">
             <div class="bg-white border border-gray-200 rounded-lg">
-                <div class="p-4">  
+                <!-- <div class="p-4">  
                     <textarea class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Input your own recipe"></textarea>
                 </div>
 
@@ -23,21 +23,50 @@
                     <a href="#" class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">Attach image</a>
 
                     <a href="#" class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Post</a>
-                </div>
+                </div> -->
+                <div class="p-8">  
+                    <form @submit.prevent="postRecipe" class="space-y-4">
+                      <div>
+                        <label for="recipeName" class="block text-sm font-medium text-gray-700">Recipe Name:</label>
+                        <input v-model="recipeName" id="recipeName" class="input-field" placeholder="Enter recipe name" />
+                      </div>
+              
+                      <div>
+                        <label for="recipeDescription" class="block text-sm font-medium text-gray-700">Recipe Description:</label>
+                        <textarea v-model="recipeDescription" id="recipeDescription" class="input-field" placeholder="Enter recipe description"></textarea>
+                      </div>
+              
+                      <div>
+                        <label for="ingredients" class="block text-sm font-medium text-gray-700">Ingredients:</label>
+                        <textarea v-model="ingredients" id="ingredients" class="input-field" placeholder="Enter ingredients with quantities"></textarea>
+                      </div>
+              
+                      <div>
+                        <label for="recipeSteps" class="block text-sm font-medium text-gray-700">Recipe Steps:</label>
+                        <textarea v-model="recipeSteps" id="recipeSteps" class="input-field" placeholder="Enter recipe steps"></textarea>
+                      </div>
+              
+                      <div class="flex justify-between">
+                        <a href="#" class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">Attach image</a>
+                        <button type="submit" class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg">Post</button>
+                      </div>
+                    </form>
+                  </div>
             </div>
 
             <div class="p-4 bg-white border border-gray-200 rounded-lg">
                 <div class="mb-6 flex items-center justify-between">
                     <div class="flex items-center space-x-6">
-                        <img src="@/assets/logo copy.png" class="w-[40px] rounded-full">
+                        <img src="@/assets/logocat.png" class="w-[40px] rounded-full">
                         
                         <p><strong>Your name</strong></p>
+                        <p>My recipe 1</p>
                     </div>
 
                     <p class="text-gray-600">18 minutes ago</p>
                 </div>
 
-                <img src="https://images.unsplash.com/photo-1661956602868-6ae368943878?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2670&amp;q=80" class="w-full rounded-lg">
+                <img src="@/assets/logocat.png" class="w-full rounded-lg">
 
                 <div class="my-6 flex justify-between">
                     <div class="flex space-x-6">
@@ -69,15 +98,18 @@
             <div class="p-4 bg-white border border-gray-200 rounded-lg">
                 <div class="mb-6 flex items-center justify-between">
                     <div class="flex items-center space-x-6">
-                        <img src="@/assets/logo copy.png" class="w-[40px] rounded-full">
+                        <img src="@/assets/logocat.png" class="w-[40px] rounded-full">
                         
                         <p><strong>Your Name</strong></p>
+                        
                     </div>
 
                     <p class="text-gray-600">18 minutes ago</p>
                 </div>
 
-                <p>Your Review</p>
+                <p>Your Review on Recipe 1
+                
+                </p>
 
                 <div class="my-6 flex justify-between">
                     <div class="flex space-x-6">
