@@ -1,10 +1,10 @@
 <template>
-  <main class="main-background">
-    <div class="welcome-container welcome-background">
-      <!-- <img src="@/assets/HomePhoto.jpg" alt="Delicious food" class="home-photo"> -->
+  <main>
+    
+    <div class="welcome-container">
       <h1>Welcome to Foodiology!</h1>
       <p>Transforming kitchen confusion into delicious discoveries.</p>
-          <p>Discover delicious recipes based on your ingredients and preferences!</p>
+      <p>Discover, Share, and Enjoy Amazing Recipes.</p>
       <RouterLink to="/search" class="search-button">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
@@ -15,37 +15,41 @@
   </main>
 </template>
 <style scoped>
-
-
 main {
   display: flex;
   justify-content: center;
-  
-  height: 50vh;
+  align-items: center;
+  height: 100vh;
 }
 .welcome-container {
+  /* text-align: center;
+  max-width: 600px; */
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Adjust the height as needed */
+  background-image: url('@/assets/HomePhoto.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  max-width: 800px;
-  max-height: 300px;
 }
-
-.welcome-background {
-  background-color: #f792ac; /* Set the background color to #f792ac */
-  padding: 10px; /* Optional: Add padding for better visual appearance */
-}
-
 h1 {
   font-size: 3rem;
   margin-bottom: 16px;
-  color: #464040;
+  color: #ffffff;
   font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 p {
   font-size: 1.5rem;
   margin-bottom: 24px;
-  color: #464040;
+  color: #ffffff;
   font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .search-button {
@@ -65,10 +69,10 @@ p {
   background-color: rgb(52, 136, 131);
 }
 
-main.main-background {
+.home-background {
   background-image: url("@/assets/HomePhoto.jpg");
   background-size: contain;
-  
+  background-position: center;
   background-repeat: no-repeat;
   height: 200vh; /* Adjust the height as needed */
   margin: 0;
