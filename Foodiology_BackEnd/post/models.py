@@ -4,8 +4,7 @@ from django.db import models
 # Create your models here.
 from django.utils.timesince import timesince
 
-# not implemented yet ?
-# from account.models import User
+from account.models import User
 
 
 class Like(models.Model):
