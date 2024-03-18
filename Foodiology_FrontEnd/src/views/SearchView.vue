@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="p-4 bg-white border border-gray-200 rounded-lg grid grid-cols-4 gap-4">
+            <!-- <div class="p-4 bg-white border border-gray-200 rounded-lg grid grid-cols-4 gap-4">
                 <div class="p-4 text-center bg-gray-100 rounded-lg">
                     <img src="@/assets/logocat.png" class="mb-6 rounded-full">
                 
@@ -126,8 +126,8 @@
                         <p class="text-xs text-gray-500">ingredients you need</p>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        </div> 
 
         <div class="main-right col-span-1 space-y-4">
             <RecommendedRecipes/>
@@ -159,15 +159,23 @@ export default {
     let baseUrl = `https://api.edamam.com/api/recipes/v2`;
     let app_id = `6c7cf088`;
     let app_key = `e7750c557637054d9401d486453748b9`;
+
+    // Fetch the ingredients list from local storage or global state
+    // let ingredientsList = localStorage.getItem('ingredients') || ''; // Assuming ingredients are stored as a comma-separated string
+  
+    // Combine the user-input ingredients with the stored ingredients list
+    // let combinedIngredients = this.searchValue + (ingredientsList ? `, ${ingredientsList}` : '');
+
+    // Base query parameters
+    // let queryParams = `?type=public&q=${encodeURIComponent(combinedIngredients)}&app_id=${app_id}&app_key=${app_key}`;
+
     // base query parameters
     let queryParams = `?type=public&q=${encodeURIComponent(this.searchValue)}&app_id=${app_id}&app_key=${app_key}`;
     if (this.dietaryPreferencesType.length) {
         this.dietaryPreferencesType.forEach((diet) => {
           queryParams += `&health=${encodeURIComponent(diet)}`;
         });
-
-    
-    }
+      }
     if (this.mealType) {
       queryParams += `&mealType=${encodeURIComponent(this.mealType)}`;
     }
@@ -183,21 +191,44 @@ export default {
     this.displayRecipes(data.hits);
       },
     displayRecipes(recipes) {
-  let html = '';
-  recipes.forEach((recipe) => {
-    html += `
-    <div class="recipe-card">
-      <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
-      <h3>${recipe.recipe.label}</h3>
-      <ul>
-        ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
-      </ul>
-      <a href ="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
-    </div> 
-    `;
-  });
-  document.getElementById('results').innerHTML = html;
-}
+        let html = '';
+        let userIngredients = this.searchValue.split(' ').map(ingredient => ingredient.toLowerCase());
+        recipes.forEach((recipe) => {
+          // let ingredientLines = recipe.recipe.ingredientLines;
+          let recipeIngredients = recipe.recipe.ingredientLines.map(ingredient => ingredient.toLowerCase());
+
+          // Determine which ingredients the user has and which are missing
+          let ingredientsYouHave = [];
+          let ingredientsYouNeed = [];
+
+          recipeIngredients.forEach(ingredient => {
+            if (userIngredients.some(userIngredient => ingredient.includes(userIngredient.toLowerCase()))) {
+              ingredientsYouHave.push(ingredient);
+            } else {
+              ingredientsYouNeed.push(ingredient);
+            }
+          });
+          html += `
+                <div class="recipe-card">
+                    <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
+                    <h3>${recipe.recipe.label}</h3>
+                    <div>
+                        <strong>Ingredients you have:</strong>
+                        <ul>${ingredientsYouHave.map(ingredient => `<li>${ingredient}</li>`).join('')}</ul>
+                    </div>
+                    <div>
+                        <strong>Ingredients you need:</strong>
+                        <ul>${ingredientsYouNeed.map(ingredient => `<li>${ingredient}</li>`).join('')}</ul>
+                    </div>
+                    <ul>
+                        ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                    <a href ="${recipe.recipe.url}" target="_blank" class="recipe-button">View Recipe</a>
+                </div>
+                `;
+        });
+        document.getElementById('results').innerHTML = html;
+      }
   }
 };
 </script>
