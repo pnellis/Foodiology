@@ -39,12 +39,16 @@ h1 {
   font-size: 3rem;
   margin-bottom: 16px;
   color: #ffffff;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 p {
   font-size: 1.5rem;
   margin-bottom: 24px;
   color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .search-button {
