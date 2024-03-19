@@ -6,8 +6,7 @@
                     
                       <a href="#" class="text-xl" style="display: flex; align-items: center;">
                         <img src="@/assets/logocat.png" class="rounded-full" style="width: 50px; height: 50px; margin-right: 8px;">
-                        <img src="@/assets/foodiology.png" alt="Foodiology Logo" class="logo-image" style="margin-right: 8px;">
-                        
+                        <img src="@/assets/foodiology.png" alt="Foodiology Logo" class="logo-image" style="margin-right: 8px;">                  
                       </a>
                 </div>
 
@@ -18,6 +17,20 @@
                           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
                       </RouterLink>
+
+                      <!-- <RouterLink to="/pantry" class="icon-container">
+                        <div class="tooltip">Pantry</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                      </RouterLink> -->
+                      <RouterLink to="/pantry" class="icon-container">
+                        <div class="tooltip">Pantry</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l3.5 14h11l2.5-10H7M16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm-9 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                        </svg>
+                      </RouterLink>
+
 
                       <RouterLink to="/search" class="icon-container">
                         <div class="tooltip">Search</div>
