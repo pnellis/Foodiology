@@ -40,13 +40,13 @@
             >
                 <form v-on:submit.prevent="submitForm" method="post">
                     <div class="p-4">  
-                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What are you thinking about?"></textarea>
+                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Input recipe"></textarea>
                     </div>
 
                     <div class="p-4 border-t border-gray-100 flex justify-between">
                         <a href="#" class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">Attach image</a>
 
-                        <button class="inline-block py-4 px-6 bg-purple-600 text-white rounded-lg">Post</button>
+                        <button class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg">Post</button>
                     </div>
                 </form>
             </div>
