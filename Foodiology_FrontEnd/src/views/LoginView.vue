@@ -1,46 +1,43 @@
 <template>
-    <div class="max-w-7xl mx-auto grid grid-cols-2 gap-4">
-        <div class="main-left">
-            <div class="p-12 bg-white border border-gray-200 rounded-lg">
-                <h1 class="mb-6 text-2xl">Log in</h1>
-
-                <p class="mb-6 text-gray-500">
-                    Login to your Foodiology Account!
-                </p>
-
-                <p class="font-bold">
-                    Don't have an account? <RouterLink :to="{'name': 'signup'}" class="underline">Click here</RouterLink> to create one!
-                </p>
-            </div>
+    <div class="flex min-h-screen">
+      <!-- Left Side: Form Area -->
+      <div class="flex-1 flex flex-col grid-cols-2 px-5 py-5">
+        <div class="max-w-md w-full mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-4">Log in to your Foodiology Account</h2>
+          <h2 class="text text-center mb-2">Start Exploring Recipes Today!</h2>
+          <div class="text-center mt-2">
+            Not a member? 
+            <RouterLink to="/signup" class="text-pink-600">Create an Account Today!</RouterLink>
+          </div>
+  
+          <div class="mt-8">
+            <form @submit.prevent="submitForm">
+              <div class="space-y-6">
+                <input v-model="form.email" type="email" placeholder="Email address" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                <input v-model="form.password" type="password" placeholder="Password" class="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <input id="remember_me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <label for="remember_me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
+                  </div>
+                  <div class="text-sm">
+                    <a href="#" class="font-medium text-pink-600 hover:text-pink-700"> Forgot your password? </a>
+                  </div>
+                </div>
+                <button class="w-full py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Sign in</button>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <div class="main-right">
-            <div class="p-12 bg-white border border-gray-200 rounded-lg">
-                <form class="space-y-6" v-on:submit.prevent="submitForm">
-                    <div>
-                        <label>E-mail</label><br>
-                        <input type="email" v-model="form.email" placeholder="Your e-mail address" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
-                    </div>
-
-                    <div>
-                        <label>Password</label><br>
-                        <input type="password" v-model="form.password" placeholder="Your password" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
-                    </div>
-
-                    <template v-if="errors.length > 0">
-                        <div class="bg-red-300 text-white rounded-lg p-6">
-                            <p v-for="error in errors" v-bind:key="error">{{ error }}</p>
-                        </div>
-                    </template>
-
-                    <div>
-                        <button class="py-4 px-6 bg-pink-600 text-white rounded-lg">Log in</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+      </div>
+  
+      <!-- Right Side: Image Area -->
+      <div class="flex-1 hidden lg:block">
+        <img class="object-cover w-full h-full" src="@/assets/HomePhoto.jpg" alt="Workspace">
+      </div>
     </div>
-</template>
+  </template>
+
 
 <script>
 import axios from 'axios'
@@ -106,3 +103,4 @@ export default {
     }
 }
 </script>
+
