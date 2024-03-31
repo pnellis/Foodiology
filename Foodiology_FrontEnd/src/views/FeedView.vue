@@ -4,7 +4,18 @@
             <div class="bg-white border border-gray-200 rounded-lg">
                 <form v-on:submit.prevent="submitForm" method="post">
                     <div class="p-4">  
-                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What are you thinking about?"></textarea>
+                        <label for="recipe_name" class="block text-sm font-medium text-gray-700">Recipe Name:</label>
+                        <textarea v-model="recipe_name" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Recipe Name"></textarea>
+                    </div>
+
+                    <div class="p-4">  
+                        <label for="ingredients" class="block text-sm font-medium text-gray-700">Ingredients:</label>
+                        <textarea v-model="ingredients" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Ingredients (separate by comma)"></textarea>
+                    </div>
+
+                    <div class="p-4">  
+                        <label for="steps" class="block text-sm font-medium text-gray-700">Steps:</label>
+                        <textarea v-model="steps" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Steps"></textarea>
                     </div>
 
                     <div class="p-4 border-t border-gray-100 flex justify-between">
@@ -50,12 +61,22 @@ export default {
     data() {
         return {
             posts: [],
-            body: '',
+            recipe_name: '',
+            ingredients: '',
+            steps: '',
+            // image: null,
         }
     },
 
     mounted() {
         this.getFeed()
+    },
+
+    computed: {
+        canSubmit() {
+            return this.recipe_name.trim() && this.ingredients.trim() && this.steps.trim();
+            // return this.recipe_name.trim() && this.ingredients.trim() && this.steps.trim() && this.image;
+        }
     },
 
     methods: {
@@ -72,23 +93,54 @@ export default {
                 })
         },
 
+        triggerFileInput() {
+            this.$refs.fileInput.click();
+        },
+
         submitForm() {
-            console.log('submitForm', this.body)
+            let formData = new FormData()
+            formData.append('recipe_name', this.recipe_name)
+            formData.append('ingredients', this.ingredients)
+            formData.append('steps', this.steps)
+            // formData.append('image', this.image)
 
             axios
-                .post('/api/posts/create/', {
-                    'body': this.body
+                .post('/api/posts/create/', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 })
                 .then(response => {
                     console.log('data', response.data)
 
                     this.posts.unshift(response.data)
-                    this.body = ''
+                    this.recipe_name = ''
+                    this.ingredients = ''
+                    this.steps = ''
+                    // this.image = null
                 })
                 .catch(error => {
                     console.log('error', error)
                 })
         }
+
+        // submitForm() {
+        //     console.log('submitForm', this.body)
+
+        //     axios
+        //         .post('/api/posts/create/', {
+        //             'body': this.body
+        //         })
+        //         .then(response => {
+        //             console.log('data', response.data)
+
+        //             this.posts.unshift(response.data)
+        //             this.body = ''
+        //         })
+        //         .catch(error => {
+        //             console.log('error', error)
+        //         })
+        // }
     }
 }
 </script>

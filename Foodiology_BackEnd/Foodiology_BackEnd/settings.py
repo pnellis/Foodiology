@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Foodiology_BackEnd.urls'
@@ -97,10 +100,16 @@ WSGI_APPLICATION = 'Foodiology_BackEnd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+import pymysql
+pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "foodiology",
+        'USER': "admin",
+        'PASSWORD': "Foodiology123",
+        'HOST': "foodiology.cxwwgy2c4rn6.us-east-1.rds.amazonaws.com",
+        'PORT': "3306",
     }
 }
 

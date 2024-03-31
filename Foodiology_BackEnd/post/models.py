@@ -31,7 +31,9 @@ class PostAttachment(models.Model):
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    body = models.TextField(blank=True, null=True)
+    recipe_name = models.TextField(blank=True, null=True)
+    ingredients = models.TextField(blank=True, null=True)
+    steps = models.TextField(blank=True, null=True)
 
     attachments = models.ManyToManyField(PostAttachment, blank=True)
 

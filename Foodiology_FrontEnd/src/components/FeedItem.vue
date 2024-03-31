@@ -1,19 +1,34 @@
 <template>
+    
     <div class="mb-6 flex items-center justify-between">
         <div class="flex items-center space-x-6">
             <img src="@/assets/logocat.png" class="w-[40px] rounded-full">
-            
             <p>
                 <strong>
                     <RouterLink :to="{name: 'profile', params:{'id': post.created_by.id}}">{{ post.created_by.name }}</RouterLink>
                 </strong>
             </p>
         </div>
-
         <p class="text-gray-600">{{ post.created_at_formatted }} ago</p>
     </div>
 
-    <p>{{ post.body }}</p>
+    <!-- Displaying the recipe details -->
+    <div class="recipe-details">
+        <h2 class="font-bold text-xl">{{ post.recipe_name }}</h2>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Ingredients:</h3>
+            <p>{{ post.ingredients }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Steps:</h3>
+            <p>{{ post.steps }}</p >
+        </div>
+        <div v-if="post.image">
+            < img: src="post.image" alt="Recipe Image" class="max-w-full h-auto rounded-lg">
+        </div>
+    </div>
 
     <div class="my-6 flex justify-between">
         <div class="flex space-x-6">
@@ -39,7 +54,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"></path>
             </svg>   
         </div>   
-    </div>  
+    </div>
+    
 </template>
 
 <script>
