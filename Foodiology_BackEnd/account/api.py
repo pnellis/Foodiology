@@ -77,14 +77,23 @@ def handle_request(request, pk, status):
     friendship_request.status = status
     friendship_request.save()
 
-    user.friends.add(request.user)
-    user.friends_count = user.friends_count + 1
-    user.save()
+    # Check if the request is accepted
+    if status == 'accepted':
+        # Add each other as friends only if accepted
+        user.friends.add(request.user)
+        user.friends_count = user.friends_count + 1
+        user.save()
 
-    request_user = request.user
-    request_user.friends_count = request_user.friends_count + 1
-    request_user.save()
+        request_user = request.user
+        request_user.friends.add(user) # This line ensures mutual friendship is recorded
+        request_user.friends_count = request_user.friends_count + 1
+        request_user.save()
 
-    return JsonResponse({'message': 'friendship request updated'})
+        message = 'Friendship request accepted and users are now friends.'
+    elif status == 'rejected':
+        # No need to add friends if rejected, just return a message
+        message = 'Friendship request rejected.'
+
+    return JsonResponse({'message': message})
 
 
