@@ -37,13 +37,13 @@
                 </div>
             </div>
 
-            <div 
+            <!-- <div 
                 class="p-4 bg-white border border-gray-200 rounded-lg"
                 v-for="post in posts"
                 v-bind:key="post.id"
             >
                 <FeedItem v-bind:post="post" />
-            </div>
+            </div> -->
 
             
         </div>
@@ -60,21 +60,21 @@
 import axios from 'axios'
 import RecommendedRecipes from '../components/RecommendedRecipes.vue'
 import TrendingRecipes from '../components/TrendingRecipes.vue'
-import FeedItem from '../components/FeedItem.vue'
+// import FeedItem from '../components/FeedItem.vue'
 
 export default {
     name: 'FindView',
     components: {
         RecommendedRecipes,
         TrendingRecipes,
-        FeedItem,
+        // FeedItem,
     },
 
     data() {
         return{
             query: '',
             users:[],
-            posts:[]
+            // posts:[]
 
         }
     },
@@ -90,7 +90,7 @@ export default {
                     console.log('response:', response.data)
 
                     this.users = response.data.users
-                    this.posts = response.data.posts
+                    // this.posts = response.data.posts
                 })
                 .catch(error => {
                     console.log('error:', error)
