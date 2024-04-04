@@ -9,7 +9,7 @@
                 </strong>
             </p>
         </div>
-        <p class="text-gray-600">{{ post.created_at_formatted }} ago</p>
+        <p class="text-gray-600">{{ post.created_at_formatted }}</p>
     </div>
 
     <!-- Displaying the recipe details -->
@@ -67,6 +67,14 @@ export default {
     }, 
 
     methods: {
+        // formatDate(datetime) {
+        //     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+        //     return new Date(datetime).toLocaleDateString('en-US', options);
+        // },
+        formatDate(datetime) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+            return new Date(datetime).toLocaleDateString('en-US', options);
+        },
         likePost(id) {
             axios 
                 .post(`/api/posts/${id}/like/`)

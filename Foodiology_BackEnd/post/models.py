@@ -21,7 +21,7 @@ class Comment(models.Model):
          ordering = ('created_at',)
     
      def created_at_formatted(self):
-       return timesince(self.created_at)
+       return self.created_at.strftime("%Y-%m-%d %H:%M")
 
 class PostAttachment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -50,7 +50,7 @@ class Post(models.Model):
         ordering = ('-created_at',)
     
     def created_at_formatted(self):
-       return timesince(self.created_at)
+       return self.created_at.strftime("%Y-%m-%d")
 
 
 

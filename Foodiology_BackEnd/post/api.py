@@ -75,10 +75,6 @@ def post_like(request, pk):
     else: 
         return JsonResponse({'message': 'post already liked'})
 
-
-
-
-
 @api_view(['POST'])
 def post_create_comment(request, pk):
     comment = Comment.objects.create(body=request.data.get('body'), created_by=request.user)
