@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'account',
     'post',
     'find',
+    'recipes',
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
@@ -138,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
