@@ -12,18 +12,41 @@
         <p class="text-gray-600">{{ post.created_at_formatted }}</p>
     </div>
 
-    <!-- Displaying the recipe details -->
     <div class="recipe-details">
-        <h2 class="font-bold text-xl">{{ post.recipe_name }}</h2>
+        <h2 class="font-bold text-xl">{{ post.title }}</h2>
         <div class="my-4"></div>
+
         <div>
             <h3 class="font-semibold">Ingredients:</h3>
-            <p>{{ post.ingredients }}</p >
+            <ul>
+                <li v-for="(ingredient, index) in post.ingredients" :key="index">{{ ingredient.name }}</li>
+            </ul>
+        </div>
+
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Instructions:</h3>
+            <p>{{ post.instructions }}</p >
         </div>
         <div class="my-4"></div>
         <div>
-            <h3 class="font-semibold">Steps:</h3>
-            <p>{{ post.steps }}</p >
+            <h3 class="font-semibold">Total Time:</h3>
+            <p>{{ post.total_time }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Yields:</h3>
+            <p>{{ post.yields }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Meal Type:</h3>
+            <p>{{ post.meal_type }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Cuisine Type:</h3>
+            <p>{{ post.cuisine_type }}</p >
         </div>
         <div v-if="post.image">
             < img: src="post.image" alt="Recipe Image" class="max-w-full h-auto rounded-lg">
@@ -63,9 +86,13 @@ import axios from 'axios'
 
 export default {
     props: {
-        post: Object
+        post: Object,
     }, 
-
+    data() {
+        return {
+            post_ingredients: [], // Array to hold the ingredients for the post
+        };
+    },
     methods: {
         // formatDate(datetime) {
         //     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
@@ -86,7 +113,7 @@ export default {
                 .catch(error => {
                     console.log('error', error)
                 })
-        }
-    }
+        },
+    },
 }
 </script>

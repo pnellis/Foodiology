@@ -3,7 +3,7 @@
         <div class="main-left col-span-3 space-y-4">
             <div class="bg-white border border-gray-200 rounded-lg">
                 <form v-on:submit.prevent="submitForm" class="p-4 flex space-x-4">  
-                    <input v-model="query" type="search" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="What are you looking for?">
+                    <input v-model="query" type="search" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Who are you looking for?">
 
                     <button class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

@@ -14,10 +14,12 @@
         </form>
       </div>
 
-      <div class="p-4 bg-white border border-gray-200 rounded-lg" v-for="post in posts" v-bind:key="post.id">
-        <FeedItem v-bind:post="post" />
+      <div class="grid grid-cols-3 gap-3 p-4">
+        <div class="p-4 bg-white border border-gray-200 rounded-lg" v-for="post in posts" v-bind:key="post.id">
+          <FeedItem v-bind:post="post" />
+        </div>
       </div>
-
+      
       <div class="bg-white border border-gray-200 rounded-lg">
         <div class="p-4 flex space-x-4">
           <div class="recipe-search-bar">

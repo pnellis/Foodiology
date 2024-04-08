@@ -6,7 +6,7 @@ from account.models import User
 from account.serializers import UserSerializer
 from post.models import Post
 from post.serializers import PostSerializer
-
+from django.db.models import Q
 
 @api_view(['POST'])
 def find(request):
@@ -16,11 +16,11 @@ def find(request):
     users = User.objects.filter(name__icontains=query)
     users_serializer = UserSerializer(users, many=True)
 
-    posts = Post.objects.filter(ingredients__icontains=query)
-    posts_serializer = PostSerializer(posts, many=True)
+    # posts = Post.objects.filter(ingredients__icontains=query)
+    # posts_serializer = PostSerializer(posts, many=True)
+
 
     return JsonResponse({
         'users': users_serializer.data,
-        'posts': posts_serializer.data
+        # 'posts': posts_serializer.data
     }, safe=False)
-

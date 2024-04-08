@@ -5,11 +5,9 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from account.models import User
 from account.serializers import UserSerializer
 
-from recipes.models import Recipe
-
 from .forms import PostForm
-from .models import Post, Like, Comment
-from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer
+from .models import Post, Like, Comment, Ingredients, Recipe_Ingredients
+from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer, IngredientsSerializer
 
 
 @api_view(['GET'])
@@ -45,22 +43,41 @@ def post_list_profile(request, id):
         'user': user_serializer.data
     }, safe=False)
 
-
 @api_view(['POST'])
 def post_create(request):
-    form = PostForm(request.data)
+    post_data = request.data.copy()
+    ingredients_data = post_data.pop('ingredients', None)
+
+    form = PostForm(post_data)
 
     if form.is_valid():
         post = form.save(commit=False)
         post.created_by = request.user
         post.save()
 
+        if ingredients_data:
+            for ingredient_name in ingredients_data:
+                ingredient, created = Ingredients.objects.get_or_create(name=ingredient_name)
+                recipe_ingredient = Recipe_Ingredients.objects.create(recipe=post, ingredient=ingredient)
+
         serializer = PostSerializer(post)
 
         return JsonResponse(serializer.data, safe=False)
     else:
-        return JsonResponse({'error': 'add somehting here later!'})
-    
+        return JsonResponse({'error': form.errors}, status=400)
+    # form = PostForm(request.data)
+
+    # if form.is_valid():
+    #     post = form.save(commit=False)
+    #     post.created_by = request.user
+    #     post.save()
+
+    #     serializer = PostSerializer(post)
+
+    #     return JsonResponse(serializer.data, safe=False)
+    # else:
+    #     return JsonResponse({'error': 'add somehting here later!'})
+
 @api_view(['POST'])
 def post_like(request, pk):
     post = Post.objects.get(pk=pk)
