@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from account.models import User
 from account.serializers import UserSerializer
 
+from recipes.models import Recipe
+
 from .forms import PostForm
 from .models import Post, Like, Comment
 from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer

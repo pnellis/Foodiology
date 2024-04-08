@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.timesince import timesince
 
 from account.models import User
+from recipes.models import Recipe
 
 class Like(models.Model):
      id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -21,7 +22,7 @@ class Comment(models.Model):
          ordering = ('created_at',)
     
      def created_at_formatted(self):
-       return self.created_at.strftime("%Y-%m-%d %H:%M")
+       return timesince(self.created_at)
 
 class PostAttachment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -46,11 +47,13 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
 
+    recipe = models.ForeignKey(Recipe, to_field = 'id', on_delete = models.CASCADE, null = True)
+
     class Meta:
         ordering = ('-created_at',)
     
     def created_at_formatted(self):
-       return self.created_at.strftime("%Y-%m-%d")
+       return timesince(self.created_at)
 
 
 
