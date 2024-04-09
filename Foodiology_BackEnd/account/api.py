@@ -2,7 +2,7 @@ from django.http import JsonResponse
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
-from .forms import SignupForm
+from .forms import SignupForm, ProfileForm
 from .models import User, FriendshipRequest
 from .serializers import UserSerializer, FriendshipRequestSerializer
 
@@ -12,6 +12,7 @@ def me(request):
         'id': request.user.id,
         'name': request.user.name,
         'email': request.user.email,
+        'avatar': request.user.get_avatar()
     })
 
 
@@ -56,6 +57,20 @@ def friends(request, pk):
              'requests': requests
         }, safe=False)
              
+@api_view(['POST'])
+def editprofile(request):
+    user = request.user
+    email = request.data.get('email')
+
+    if User.objects.exclude(id=user.id).filter(email=email).exists():
+        return JsonResponse({'message': 'Email Already Exists'})
+    else:
+        form = ProfileForm(request.POST, request.FILES, instance=user)
+
+        if form.is_valid():
+            form.save()
+
+        return JsonResponse({'message': 'Information Updated'})
 
 @api_view(['POST'])
 def send_friendship_request(request, pk):
@@ -77,9 +92,9 @@ def handle_request(request, pk, status):
     friendship_request.status = status
     friendship_request.save()
 
-    # Check if the request is accepted
+    # check if the request is accepted
     if status == 'accepted':
-        # Add each other as friends only if accepted
+        # ddd each other as friends only if accepted
         user.friends.add(request.user)
         user.friends_count = user.friends_count + 1
         user.save()
@@ -91,7 +106,7 @@ def handle_request(request, pk, status):
 
         message = 'Friendship request accepted and users are now friends.'
     elif status == 'rejected':
-        # No need to add friends if rejected, just return a message
+        # if rejected, just return a message
         message = 'Friendship request rejected.'
 
     return JsonResponse({'message': message})
