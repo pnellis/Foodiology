@@ -2,48 +2,76 @@
     <div class="add-ingredients">
         <h1>Add Your Ingredients</h1>
         <form @submit.prevent="addIngredient">
-            <input type="text" v-model="newIngredient.name" placeholder="Enter ingredient" />
-            <input type="text" v-model="newIngredient.amount" placeholder="Enter amount" />
+            <input type="text" v-model="newIngredient.ingredient_name" placeholder="Enter ingredient" />
+            <input type="text" v-model="newIngredient.ingredient_quantity" placeholder="Enter amount" />
             <button type="submit">Add</button>
         </form>
         <ul>
             <li v-for="(ingredient, index) in ingredients" :key="index">
-                {{ ingredient.name }} - {{ ingredient.amount }}
-                <button @click="deleteIngredient(index)">Delete</button>
+                {{ ingredient.ingredient_name }} - {{ ingredient.ingredient_quantity }}
+                <button @click="deleteIngredient(ingredient.id)">Delete</button>
             </li>
         </ul>
     </div>
 </template>
   
 <script>
+import axios from 'axios';
+
 export default {
+    name: 'PantryComponent',
     data() {
         return {
-            newIngredient: { name: '', amount: '' },
+            newIngredient: { ingredient_name: '', ingredient_quantity: '' },
             ingredients: [],
         };
     },
-    methods: {
-        addIngredient() {
-            if (this.newIngredient.name.trim() && this.newIngredient.amount.trim()) {
-                this.ingredients.push({
-                    name: this.newIngredient.name.trim(),
-                    amount: this.newIngredient.amount.trim()
-                });
-                this.newIngredient = { name: '', amount: '' };
-                localStorage.setItem('ingredients', JSON.stringify(this.ingredients));
-            }
-        },
-        deleteIngredient(index) {
-            this.ingredients.splice(index, 1);
-            localStorage.setItem('ingredients', JSON.stringify(this.ingredients));
-        },
+    mounted() {
+        this.getIngredients();
     },
-    created() {
-        const storedIngredients = localStorage.getItem('ingredients');
-        if (storedIngredients) {
-            this.ingredients = JSON.parse(storedIngredients);
-        }
+    methods: {
+        getIngredients() {
+            axios
+                .get('/api/pantry/')
+                .then(response => {
+                    this.ingredients = response.data;
+                })
+                .catch(error => {
+                    console.error('Failed to fetch ingredients:', error);
+                });
+        },
+        addIngredient() {
+            const ingredientData = {
+                ingredient_name: this.newIngredient.ingredient_name.trim(),
+                ingredient_quantity: this.newIngredient.ingredient_quantity
+            };
+            const existingIngredient = this.ingredients.find(ingredient => ingredient.ingredient_name.toLowerCase() === ingredientData.ingredient_name.toLowerCase());
+
+            if (existingIngredient) {
+                // Alert the user or handle the duplication as needed
+                alert('This ingredient already exists in your pantry.');
+                return; // Prevent adding the duplicate ingredient
+            }
+            axios
+                .post('/api/pantry/', ingredientData)
+                .then(response => {
+                    this.ingredients.push(response.data);
+                    this.newIngredient = { ingredient_name: '', ingredient_quantity: '' };
+                })
+                .catch(error => {
+                    console.error('Failed to add ingredient:', error);
+                });
+        },
+        deleteIngredient(id) {
+            axios
+                .delete(`/api/pantry/${id}/`)
+                .then(() => {
+                    this.ingredients = this.ingredients.filter(ingredient => ingredient.id !== id);
+                })
+                .catch(error => {
+                    console.error('Failed to delete ingredient:', error);
+                });
+        },
     },
 };
 </script>
@@ -106,5 +134,3 @@ export default {
     border-radius: 4px;
 }
 </style>
-  
-  
