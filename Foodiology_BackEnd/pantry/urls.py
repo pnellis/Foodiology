@@ -5,6 +5,6 @@ from . import api
 
 urlpatterns = [
     path('', api.pantry_list, name='pantry_list'),
-    path('api/pantry/<int:id>/', api.pantry_detail, name='pantry-detail'),
+    path('<int:ids>/', api.pantry_detail, name='pantry-detail'),
     # ... any other pantry-specific paths
-]
+] 

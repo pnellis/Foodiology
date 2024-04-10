@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'account',
     'post',
     'find',
+    'pantry',
     'recipes',
     'rest_framework',
     'rest_framework_simplejwt',

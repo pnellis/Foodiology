@@ -8,8 +8,15 @@
         </form>
         <ul>
             <li v-for="(ingredient, index) in ingredients" :key="index">
-                {{ ingredient.ingredient_name }} - {{ ingredient.ingredient_quantity }}
-                <button @click="deleteIngredient(ingredient.id)">Delete</button>
+                <div v-if="editingIndex !== index">
+                    {{ ingredient.ingredient_name }} - {{ ingredient.ingredient_quantity }}
+                    <button @click="toggleEdit(index)">Edit</button>
+                    <button @click="deleteIngredient(ingredient.id)">Delete</button>
+                </div>
+                <div v-else>
+                    <input type="text" v-model="ingredient.ingredient_quantity" />
+                    <button @click="updateIngredient(index)">Update</button>
+                </div>
             </li>
         </ul>
     </div>
@@ -24,6 +31,7 @@ export default {
         return {
             newIngredient: { ingredient_name: '', ingredient_quantity: '' },
             ingredients: [],
+            editingIndex: null,
         };
     },
     mounted() {
@@ -70,6 +78,20 @@ export default {
                 })
                 .catch(error => {
                     console.error('Failed to delete ingredient:', error);
+                });
+        },
+        toggleEdit(index) {
+            this.editingIndex = index;
+        },
+        updateIngredient(index) {
+            const ingredient = this.ingredients[index];
+            axios
+                .put(`/api/pantry/${ingredient.id}/`, ingredient)
+                .then(() => {
+                    this.editingIndex = null; // Exit edit mode
+                })
+                .catch(error => {
+                    console.error('Failed to update ingredient:', error);
                 });
         },
     },

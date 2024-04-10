@@ -1,54 +1,44 @@
 <template>
-    <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-5 gap-4">
         <div class="main-left col-span-1">
             <div class="p-4 bg-white border border-gray-200 text-center rounded-lg">
                 <img :src="user.get_avatar" class="mb-6 rounded-full">
-                
+
                 <p><strong>{{ user.name }}</strong></p>
 
                 <div class="mt-6 flex space-x-8 justify-around" v-if="user.id">
-                    <RouterLink :to="{name: 'friends', params: {id: user.id}}" class="text-xs text-gray-500">{{ user.friends_count}} friends</RouterLink>
-                    <p class="text-xs text-gray-500"> {{ user.posts_count }} recipes</p> 
+                    <RouterLink :to="{ name: 'friends', params: { id: user.id } }" class="text-xs text-gray-500">{{
+                        user.friends_count }} friends</RouterLink>
+                    <p class="text-xs text-gray-500"> {{ user.posts_count }} recipes</p>
                 </div>
-                
+
                 <div class="mt-6">
-                    <button
-                        class="inline-block py-4 px-6 bg-purple-600 text-xs text-white rounded-lg" 
-                        @click="sendFriendshipRequest"
-                        v-if="userStore.user.id !== user.id"
-                        >
+                    <button class="inline-block py-4 px-6 bg-purple-600 text-xs text-white rounded-lg"
+                        @click="sendFriendshipRequest" v-if="userStore.user.id !== user.id">
                         Send friendship request
                     </button>
 
-                    <RouterLink
-                    class="inline-block mr-2 py-4 px-3 bg-pink-600 text-xs text-white rounded-lg" 
-                    to="/profile/edit"
-                    v-if="userStore.user.id == user.id"
-                    >
+                    <RouterLink class="inline-block mr-2 py-4 px-3 bg-pink-600 text-xs text-white rounded-lg"
+                        to="/profile/edit" v-if="userStore.user.id == user.id">
                         Edit Profile
                     </RouterLink>
 
-                    <button
-                        class="inline-block py-4 px-6 bg-red-600 text-xs text-white rounded-lg" 
-                        @click="logout"
-                        v-if="userStore.user.id == user.id"
-                    >
+                    <button class="inline-block py-4 px-6 bg-red-600 text-xs text-white rounded-lg" @click="logout"
+                        v-if="userStore.user.id == user.id">
                         Log Out
-                </button>
-                
-            </div>
-        
+                    </button>
+
+                </div>
+
             </div>
         </div>
 
         <div class="main-center col-span-2 space-y-4">
-            <div 
-                class="bg-white border border-gray-200 rounded-lg"
-                v-if="userStore.user.id === user.id"
-            >
+            <div class="bg-white border border-gray-200 rounded-lg" v-if="userStore.user.id === user.id">
                 <form v-on:submit.prevent="submitForm" method="post">
-                    <div class="p-4">  
-                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Input recipe"></textarea>
+                    <div class="p-4">
+                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg"
+                            placeholder="Input recipe"></textarea>
                     </div>
 
                     <div class="p-4 border-t border-gray-100 flex justify-between">
@@ -59,20 +49,16 @@
                 </form>
             </div>
 
-            <div 
-                class="p-4 bg-white border border-gray-200 rounded-lg"
-                v-for="post in posts"
-                v-bind:key="post.id"
-            >
+            <div class="p-4 bg-white border border-gray-200 rounded-lg" v-for="post in posts" v-bind:key="post.id">
                 <FeedItem v-bind:post="post" />
             </div>
-            
+
         </div>
 
-        <div class="main-right col-span-1 space-y-4">
-            <RecommendedRecipes/>
-            <TrendingRecipes/>
-              
+        <div class="main-right col-span-2 space-y-4">
+            <PantryComponent />
+            <RecommendedRecipes />
+            <TrendingRecipes />
         </div>
     </div>
 </template>
@@ -82,6 +68,7 @@ import axios from 'axios'
 import RecommendedRecipes from '../components/RecommendedRecipes.vue'
 import TrendingRecipes from '../components/TrendingRecipes.vue'
 import FeedItem from '../components/FeedItem.vue'
+import PantryComponent from '../components/PantryComponent.vue';
 import { useUserStore } from '@/stores/user'
 import { useToastStore } from '@/stores/toast'
 
@@ -93,7 +80,7 @@ export default {
         const toastStore = useToastStore()
 
         return {
-            userStore, 
+            userStore,
             toastStore
         }
     },
@@ -101,13 +88,14 @@ export default {
     components: {
         RecommendedRecipes,
         TrendingRecipes,
-        FeedItem
+        FeedItem,
+        PantryComponent
     },
 
     data() {
         return {
             posts: [],
-            user:{
+            user: {
                 id: null
             },
             body: '',
@@ -118,9 +106,9 @@ export default {
         this.getFeed()
     },
 
-    watch: { 
+    watch: {
         '$route.params.id': {
-            handler: function() {
+            handler: function () {
                 this.getFeed()
             },
             deep: true,
@@ -130,7 +118,7 @@ export default {
 
     methods: {
         sendFriendshipRequest() {
-            axios 
+            axios
                 .post(`/api/friends/${this.$route.params.id}/request/`)
                 .then(response => {
                     console.log('data', response.data)
@@ -138,12 +126,12 @@ export default {
                         this.toastStore.showToast(5000, 'The request has already been sent!', 'bg-red-300')
                     } else {
                         this.toastStore.showToast(5000, 'The request was sent!', 'bg-emerald-300')
-                }
+                    }
                 })
                 .catch(error => {
                     console.log('error', error)
-                })                
-        }, 
+                })
+        },
 
         getFeed() {
             axios
@@ -176,10 +164,10 @@ export default {
                 .catch(error => {
                     console.log('error', error)
                 })
-        }, 
+        },
 
         logout() {
-            console.log('Log out') 
+            console.log('Log out')
 
             this.userStore.removeToken()
 

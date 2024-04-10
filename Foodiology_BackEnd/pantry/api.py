@@ -1,10 +1,17 @@
-# File: api.py
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from pantry.models import Ingredient
-from pantry.serializers import IngredientSerializer
+from .models import Ingredient
+from .serializers import IngredientSerializer
 from rest_framework.permissions import IsAuthenticated
+
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from django.http.response import JsonResponse
+
+from django.core.files.storage import default_storage
+
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -23,9 +30,9 @@ def pantry_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def pantry_detail(request, id):
+def pantry_detail(request, ids):
     try:
-        ingredient = Ingredient.objects.get(pk=id, user=request.user)
+        ingredient = Ingredient.objects.get(pk=ids, user=request.user)
     except Ingredient.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -41,5 +48,6 @@ def pantry_detail(request, id):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
+        ingredient = Ingredient.objects.get(id = ids)
         ingredient.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
