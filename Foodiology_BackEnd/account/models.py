@@ -3,6 +3,7 @@ import uuid
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
 from django.db import models
 from django.utils import timezone
+from django.templatetags.static import static
 
 class CustomUserManager(UserManager):
     def _create_user(self, name, email, password, **extra_fields):
@@ -53,7 +54,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.avatar:
             return 'http://127.0.0.1:8000' + self.avatar.url
         else: 
-            return ''
+            # double check this ?? -- default iamge
+            return static('assets/logocat.png')
 
 class FriendshipRequest(models.Model): 
     SENT = 'sent' 
