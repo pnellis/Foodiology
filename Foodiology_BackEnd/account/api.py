@@ -70,7 +70,9 @@ def editprofile(request):
         if form.is_valid():
             form.save()
 
-        return JsonResponse({'message': 'Information Updated'})
+        serializer = UserSerializer(user)
+
+        return JsonResponse({'message': 'Information Updated', 'user': serializer.data})
 
 @api_view(['POST'])
 def send_friendship_request(request, pk):

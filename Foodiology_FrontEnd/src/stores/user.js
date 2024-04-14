@@ -17,23 +17,23 @@ export const useUserStore = defineStore({
     }),
 
     actions: {
-        initStore() {
-            console.log('initStore', localStorage.getItem('user.access'))
+        async initStore() {
+            console.log('initStore');
 
-            if (localStorage.getItem('user.access')) {
-                console.log('User has access!')
+            if (localStorage.getItem('user.refresh')) {
+                console.log('Attempting to restore session');
 
-                this.user.access = localStorage.getItem('user.access')
-                this.user.refresh = localStorage.getItem('user.refresh')
-                this.user.id = localStorage.getItem('user.id')
-                this.user.name = localStorage.getItem('user.name')
-                this.user.email = localStorage.getItem('user.email')
-                this.user.avatar = localStorage.getItem('user.avatar')
-                this.user.isAuthenticated = true
+                await this.refreshToken(); // Validate refresh token and update access token
 
-                this.refreshToken()
+                this.user.id = localStorage.getItem('user.id');
+                this.user.name = localStorage.getItem('user.name');
+                this.user.email = localStorage.getItem('user.email');
+                this.user.avatar = localStorage.getItem('user.avatar');
+                this.user.isAuthenticated = true;
 
-                console.log('Initialized user:', this.user)
+                console.log('Session restored:', this.user);
+            } else {
+                console.log('No session to restore');
             }
         },
 
@@ -56,9 +56,9 @@ export const useUserStore = defineStore({
             this.user.refresh = null
             this.user.access = null
             this.user.isAuthenticated = false
-            this.user.id = false
-            this.user.name = false
-            this.user.email = false
+            this.user.id = null
+            this.user.name = null
+            this.user.email = null
             this.user.avatar = null
 
             localStorage.setItem('user.access', '')

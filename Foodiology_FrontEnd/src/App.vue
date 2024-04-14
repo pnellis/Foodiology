@@ -21,7 +21,7 @@
           </RouterLink>
 
           <RouterLink to="/search" class="icon-container">
-            <div class="tooltip">Search</div>
+            <div class="tooltip">Search Recipes</div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -31,7 +31,7 @@
 
           <template v-if="userStore.user.isAuthenticated">
             <RouterLink to="/find" class="icon-container">
-              <div class="tooltip">Find</div>
+              <div class="tooltip">Find Friends</div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"

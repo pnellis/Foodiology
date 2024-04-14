@@ -55,6 +55,10 @@ def post_create(request):
         post.created_by = request.user
         post.save()
 
+        user = request.user
+        user.posts_count = user.posts_count + 1
+        user.save()
+
         if ingredients_data:
             for ingredient_name in ingredients_data:
                 ingredient, created = Ingredients.objects.get_or_create(name=ingredient_name)
