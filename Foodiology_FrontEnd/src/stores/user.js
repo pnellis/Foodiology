@@ -56,9 +56,9 @@ export const useUserStore = defineStore({
             this.user.refresh = null
             this.user.access = null
             this.user.isAuthenticated = false
-            this.user.id = null
-            this.user.name = null
-            this.user.email = null
+            this.user.id = false
+            this.user.name = false
+            this.user.email = false
             this.user.avatar = null
 
             localStorage.setItem('user.access', '')
