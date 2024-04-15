@@ -14,7 +14,7 @@
 
                 <div class="mt-6">
                     <button class="inline-block py-4 px-6 bg-purple-600 text-xs text-white rounded-lg"
-                        @click="sendFriendshipRequest" v-if="userStore.user.id !== user.id">
+                        @click="sendFriendshipRequest" v-if="userStore.user.id !== user.id && can_send_friendship_request">
                         Send friendship request
                     </button>
 
@@ -98,6 +98,7 @@ export default {
             user: {
                 id: null
             },
+            can_send_friendship_request: null,
             body: '',
         }
     },
@@ -122,6 +123,9 @@ export default {
                 .post(`/api/friends/${this.$route.params.id}/request/`)
                 .then(response => {
                     console.log('data', response.data)
+
+                    this.can_send_friendship_request = false
+
                     if (response.data.message == 'request already sent') {
                         this.toastStore.showToast(5000, 'The request has already been sent!', 'bg-red-300')
                     } else {
@@ -141,6 +145,7 @@ export default {
 
                     this.posts = response.data.posts
                     this.user = response.data.user
+                    this.can_send_friendship_request = response.data.can_send_friendship_request
 
                 })
                 .catch(error => {
