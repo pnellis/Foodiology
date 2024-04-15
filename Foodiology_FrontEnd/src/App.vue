@@ -3,11 +3,13 @@
     <div class="max-w-7xl mx-auto">
       <div class="flex items-center justify-between">
         <div class="menu-left">
+          <RouterLink to="/" class="icon-container">
+            <a href="#" class="text-xl" style="display: flex; align-items: center;">
+              <img src="@/assets/logocat.png" class="rounded-full" style="width: 50px; height: 50px; margin-right: 8px;">
+              <img src="@/assets/foodiology.png" alt="Foodiology Logo" class="logo-image" style="margin-right: 8px;">
+            </a>
+          </RouterLink>
 
-          <a href="#" class="text-xl" style="display: flex; align-items: center;">
-            <img src="@/assets/logocat.png" class="rounded-full" style="width: 50px; height: 50px; margin-right: 8px;">
-            <img src="@/assets/foodiology.png" alt="Foodiology Logo" class="logo-image" style="margin-right: 8px;">
-          </a>
         </div>
 
         <div class="menu-center flex space-x-12">
@@ -77,14 +79,17 @@
     </div>
   </nav>
 
-  <main class="px-8 py-6 bg-gray-100">
-    <RouterView />
-  </main>
-
+  <div id="app">
+    <main :class="mainClass">
+      <RouterView />
+    </main>
+  </div>
   <Toast />
 </template>
 
 <script>
+
+
 import axios from 'axios'
 import Toast from '@/components/Toast.vue'
 import { useUserStore } from '@/stores/user'
@@ -111,6 +116,17 @@ export default {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     } else {
       axios.defaults.headers.common["Authorization"] = "";
+    }
+  }, 
+  computed: {
+    mainClass() {
+      // Define the routes that should have the specific style
+      const styledRoutes = ['/','/about','/login' ];
+      // Check if the current route is one of the styled routes /friends/${this.$route.params.id}/request/`
+      if (styledRoutes.includes(this.$route.path)) {
+        return ' '; // Apply no style
+      }
+      return 'px-8 py-6 bg-gray-100'; // Default style
     }
   }
 }
@@ -142,4 +158,5 @@ export default {
 .menu-center .icon-container:hover .icon {
   color: pink;
 }
+
 </style>
