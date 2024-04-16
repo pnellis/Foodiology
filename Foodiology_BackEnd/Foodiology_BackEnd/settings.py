@@ -108,13 +108,14 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "foodiology",
+        'NAME': "foodiology_test2",
         'USER': "admin",
-        'PASSWORD': "Foodiology123",
-        'HOST': "foodiology.cxwwgy2c4rn6.us-east-1.rds.amazonaws.com",
+        'PASSWORD': "admin2024",
+        'HOST': "mytestmysql.cfomu6wo4ku5.us-east-1.rds.amazonaws.com",
         'PORT': "3306",
     }
 }
+
 
 
 # Password validation
