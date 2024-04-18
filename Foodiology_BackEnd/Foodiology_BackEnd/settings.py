@@ -14,7 +14,9 @@ SECRET_KEY = 'django-insecure-v*=4ctfyl&pe37%c8rs7oa4hoj3h_4w--q9nxw1j=ebd%91865
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['foodiology.com']
+ALLOWED_HOSTS = ['foodiology.com', 'foodiologyapi.com']
+
+WEBSITE_URL = 'http://foodiologyapi.com'
 
 # Application definition
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -40,11 +42,13 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://foodiology.com"
     
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
+    "http://foodiology.com"
 ]
 
 INSTALLED_APPS = [
