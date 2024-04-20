@@ -34,20 +34,6 @@
         </div>
 
         <div class="main-center col-span-2 space-y-4">
-            <div class="bg-white border border-gray-200 rounded-lg" v-if="userStore.user.id === user.id">
-                <form v-on:submit.prevent="submitForm" method="post">
-                    <div class="p-4">
-                        <textarea v-model="body" class="p-4 w-full bg-gray-100 rounded-lg"
-                            placeholder="Input recipe"></textarea>
-                    </div>
-
-                    <div class="p-4 border-t border-gray-100 flex justify-between">
-                        <a href="#" class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">Attach image</a>
-
-                        <button class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg">Post</button>
-                    </div>
-                </form>
-            </div>
 
             <div class="p-4 bg-white border border-gray-200 rounded-lg" v-for="post in posts" v-bind:key="post.id">
                 <FeedItem v-bind:post="post" />

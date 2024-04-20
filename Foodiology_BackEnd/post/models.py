@@ -64,11 +64,13 @@ class PostAttachment(models.Model):
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.TextField(blank=True, null=True)
+    host = models.TextField(blank=True, null=True)
     ingredients = models.TextField(blank=True, null=True)
     instructions = models.TextField(blank=True, null=True)
     total_time = models.IntegerField(null=True, blank=True)  # in minutes
     yields = models.CharField(max_length=255, blank=True, null=True)
     meal_type = models.CharField(max_length=255, blank=True, null=True)
+    image_url = models.TextField(blank=True, null=True)
     canonical_url = models.TextField(blank=True, null=True)
     cuisine_type = models.CharField(max_length=512, blank=True, null=True)
     nutirents = models.TextField(blank=True, null=True)

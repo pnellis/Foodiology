@@ -17,13 +17,19 @@
         </form>
       </div>
 
-      <div class="grid grid-cols-3 gap-3 p-4">
+      <!-- <div class="grid grid-cols-3 gap-3 p-4">
         <div class="p-4 bg-white border border-gray-200 rounded-lg" v-for="post in posts" v-bind:key="post.id">
           <FeedItem v-bind:post="post" />
         </div>
+      </div> -->
+
+      <div class="grid grid-cols-3 gap-3 p-4">
+        <div v-for="post in posts" :key="post.id">
+          <FeedItemCard :post="post" />
+        </div>
       </div>
 
-      <div class="bg-white border border-gray-200 rounded-lg">
+      <!-- <div class="bg-white border border-gray-200 rounded-lg">
         <div class="p-4 flex space-x-4">
           <div class="recipe-search-bar">
             <div class="combined-search">
@@ -92,7 +98,7 @@
             <div id="recipe-card"></div>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
 
@@ -108,16 +114,16 @@
 import axios from 'axios'
 import RecommendedRecipes from '../components/RecommendedRecipes.vue'
 import TrendingRecipes from '../components/TrendingRecipes.vue'
-import PantryComponent from '../components/PantryComponent.vue';
 import FeedItem from '../components/FeedItem.vue'
+import FeedItemCard from '@/components/FeedItemCard.vue';
 
 export default {
   name: 'SearchView',
   components: {
     RecommendedRecipes,
     TrendingRecipes,
-    PantryComponent,
-    FeedItem,
+    // FeedItem,
+    FeedItemCard
   },
   data() {
     return {
