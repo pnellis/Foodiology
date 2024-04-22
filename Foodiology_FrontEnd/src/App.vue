@@ -40,7 +40,7 @@
                   d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
               </svg>
             </RouterLink>
-            
+
             <RouterLink to="/feed" class="icon-container">
               <div class="tooltip">Feed</div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -66,7 +66,7 @@
         <div class="menu-right">
           <template v-if="userStore.user.isAuthenticated">
             <RouterLink :to="{ name: 'profile', params: { 'id': userStore.user.id } }">
-              <img src="@/assets/logocat.png" class="w-12 rounded-full" style="width: 50px; height: auto;">
+              <img :src="user.get_avatar" class="w-12 rounded-full" alt="User Avatar">
             </RouterLink>
           </template>
 
@@ -88,13 +88,17 @@
 </template>
 
 <script>
-
-
 import axios from 'axios'
-import Toast from '@/components/Toast.vue'
+import RecommendedRecipes from '@/components/RecommendedRecipes.vue'
+import TrendingRecipes from '@/components/TrendingRecipes.vue'
+import FeedItem from '@/components/FeedItem.vue'
+import PantryComponent from '@/components/PantryComponent.vue';
 import { useUserStore } from '@/stores/user'
+import { useToastStore } from '@/stores/toast'
+import Toast from '@/components/Toast.vue'
 
 export default {
+  name: 'FeedView',
   setup() {
     const userStore = useUserStore()
 
@@ -104,7 +108,98 @@ export default {
   },
 
   components: {
-    Toast
+    Toast,
+    FeedItem
+  },
+
+
+  mounted() {
+    this.getFeed()
+  },
+
+  data() {
+    return {
+      posts: [],
+      user: {
+        id: null
+      },
+      can_send_friendship_request: null,
+      body: '',
+    }
+  },
+
+  watch: {
+    '$route.params.id': {
+      handler: function () {
+        this.getFeed()
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+
+  methods: {
+    getFeed() {
+      axios
+        .get(`/api/posts/profile/${this.$route.params.id}/`)
+        .then(response => {
+          console.log('data', response.data)
+
+          this.posts = response.data.posts
+          this.user = response.data.user
+          this.can_send_friendship_request = response.data.can_send_friendship_request
+
+        })
+        .catch(error => {
+          console.log('error', error)
+        })
+    },
+
+    sendFriendshipRequest() {
+      axios
+        .post(`/api/friends/${this.$route.params.id}/request/`)
+        .then(response => {
+          console.log('data', response.data)
+
+          this.can_send_friendship_request = false
+
+          if (response.data.message == 'request already sent') {
+            this.toastStore.showToast(5000, 'The request has already been sent!', 'bg-red-300')
+          } else {
+            this.toastStore.showToast(5000, 'The request was sent!', 'bg-emerald-300')
+          }
+        })
+        .catch(error => {
+          console.log('error', error)
+        })
+    },
+
+    submitForm() {
+      console.log('submitForm', this.body)
+
+      axios
+        .post('/api/posts/create/', {
+          'body': this.body
+        })
+        .then(response => {
+          console.log('data', response.data)
+
+          this.posts.unshift(response.data)
+          this.body = ''
+          this.user.posts_count += 1
+        })
+        .catch(error => {
+          console.log('error', error)
+        })
+    },
+
+    logout() {
+      console.log('Log out')
+
+      this.userStore.removeToken()
+
+      this.$router.push('/login')
+    }
   },
 
   beforeCreate() {
@@ -117,11 +212,11 @@ export default {
     } else {
       axios.defaults.headers.common["Authorization"] = "";
     }
-  }, 
+  },
   computed: {
     mainClass() {
       // Define the routes that should have the specific style
-      const styledRoutes = ['/','/about','/login' ];
+      const styledRoutes = ['/', '/about', '/login'];
       // Check if the current route is one of the styled routes /friends/${this.$route.params.id}/request/`
       if (styledRoutes.includes(this.$route.path)) {
         return ' '; // Apply no style
@@ -130,7 +225,10 @@ export default {
     }
   }
 }
+
 </script>
+
+
 
 <style>
 .menu-center .icon-container {
@@ -158,5 +256,4 @@ export default {
 .menu-center .icon-container:hover .icon {
   color: pink;
 }
-
 </style>
