@@ -226,12 +226,26 @@ def post_list_profile(request, id):
 
 @api_view(['POST'])
 def post_create(request):
-    form = PostForm(request.data)
+    form = PostForm(request.POST)
+    attachment = None
+    attachment_form = AttachmentForm(request.POST, request.FILES)
+
+    if attachment_form.is_valid():
+        attachment = attachment_form.save(commit=False)
+        attachment.created_by = request.user
+        attachment.save()
 
     if form.is_valid():
         post = form.save(commit=False)
         post.created_by = request.user
         post.save()
+
+        if attachment:
+            post.attachments.add(attachment)
+
+        user = request.user
+        user.posts_count = user.posts_count + 1
+        user.save()
 
         serializer = PostSerializer(post)
 
@@ -267,3 +281,10 @@ def post_create_comment(request, pk):
     serializer = CommentSerializer(comment)
 
     return JsonResponse(serializer.data, safe=False)
+
+@api_view(['DELETE'])
+def post_delete(request, pk):
+    post = Post.objects.filter(created_by=request.user).get(pk=pk)
+    post.delete()
+
+    return JsonResponse({'message': 'post deleted'})

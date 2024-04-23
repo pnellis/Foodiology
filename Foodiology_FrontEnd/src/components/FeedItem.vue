@@ -16,16 +16,66 @@
         <h2 class="font-bold text-xl">{{ post.title }}</h2>
         <div class="my-4"></div>
         <div>
+            <img v-if="!post.image_url" 
+                v-for="image in post.attachments" 
+                :key="image.id" 
+                :src="image.get_image" 
+                class="max-w-[500px] h-auto rounded-lg">
+            
+            <img v-else 
+                :src="post.image_url" 
+                alt="Recipe Image" 
+                class="max-w-[500px] h-auto rounded-lg">
+        </div>
+        <!-- <template v-if="post.attachments.length">
+            <img v-for="image in post.attachments" v-bind:key="image.id" :src="image.get_image" class="w-full mb-4 rounded-xl">
+        </template>
+        <div v-if="post.image_url">
+            <img :src="post.image_url" alt="Recipe Image" class="max-w-[500px] h-auto rounded-lg">
+        </div> -->
+        <div class="my-4"></div>
+        <div>
             <h3 class="font-semibold">Ingredients:</h3>
-            <p>{{ post.ingredients }}</p >
+            <!-- <p>{{ post.ingredients }}</p > -->
+            <ul>
+                <li v-for="ingredient in post.ingredients.split(',')" :key="ingredient">- {{ ingredient.trim() }}</li>
+            </ul>
         </div>
         <div class="my-4"></div>
         <div>
             <h3 class="font-semibold">Steps:</h3>
-            <p>{{ post.instructions }}</p >
+            <!-- <p>{{ post.instructions }}</p > -->
+            <ul>
+                <li v-for="step in post.instructions.split('.')" :key="step">- {{ step.trim() }}.</li>
+            </ul>
         </div>
-        <div v-if="post.image">
-            < img: src="post.image" alt="Recipe Image" class="max-w-full h-auto rounded-lg">
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Total Time:</h3>
+            <p>{{ post.total_time }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Yields:</h3>
+            <p>{{ post.yields }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Meal Type:</h3>
+            <p>{{ post.meal_type }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Cuisine Type:</h3>
+            <p>{{ post.cuisine_type }}</p >
+        </div>
+        <div class="my-4"></div>
+        <div>
+            <h3 class="font-semibold">Nutrient:</h3>
+            <!-- <p>{{ post.nutirents }}</p > -->
+            <ul>
+                <li v-for="nutrient in post.nutirents.split(',')" :key="nutrient">{{ nutrient.trim() }}</li>
+            </ul>
         </div>
     </div>
     
@@ -49,10 +99,28 @@
         </div>
         
         <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"></path>
-            </svg>   
-        </div>   
+            <div @click="toggleExtraModal">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"></path>
+                </svg>
+            </div>   
+        </div> 
+    </div>
+
+    <div v-if="showExtraModal">
+        <div class="flex space-x-6 items-center">
+            <div 
+                class="flex items-center space-x-2" 
+                @click="deletePost"
+                v-if="userStore.user.id == post.created_by.id"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                </svg>
+ 
+                <span class="text-red-500 text-xs">Delete post</span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -60,31 +128,58 @@
 import axios from 'axios'
 
 export default {
-props: {
-    post: Object
-}, 
+    props: {
+        post: Object
+    }, 
 
-methods: {
-    // formatDate(datetime) {
-    //     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-    //     return new Date(datetime).toLocaleDateString('en-US', options);
-    // },
-    formatDate(datetime) {
-        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
-        return new Date(datetime).toLocaleDateString('en-US', options);
+    emits: ['deletePost'],
+
+    data() {
+        return {
+            showExtraModal: false
+        }
     },
-    likePost(id) {
-        axios 
-            .post(`/api/posts/${id}/like/`)
-            .then(response => {
-                if (response.data.message == 'like created') {
-                    this.post.likes_count += 1
-                }
-            })
-            .catch(error => {
-                console.log('error', error)
-            })
+
+    methods: {
+        // formatDate(datetime) {
+        //     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+        //     return new Date(datetime).toLocaleDateString('en-US', options);
+        // },
+        formatDate(datetime) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+            return new Date(datetime).toLocaleDateString('en-US', options);
+        },
+        likePost(id) {
+            axios 
+                .post(`/api/posts/${id}/like/`)
+                .then(response => {
+                    if (response.data.message == 'like created') {
+                        this.post.likes_count += 1
+                    }
+                })
+                .catch(error => {
+                    console.log('error', error)
+                })
+        },
+        deletePost() {
+            this.$emit('deletePost', this.post.id)
+
+            axios
+                .delete(`/api/posts/${this.post.id}/delete/`)
+                .then(response => {
+                    console.log(response.data)
+
+                    this.toastStore.showToast(5000, 'The post was deleted', 'bg-emerald-500')
+                })
+                .catch(error => {
+                    console.log("error", error);
+                })
+        },
+        toggleExtraModal() {
+            console.log('toggleExtraModal')
+
+            this.showExtraModal = !this.showExtraModal
+        }
     }
-}
 }
 </script>
