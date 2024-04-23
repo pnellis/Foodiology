@@ -14,9 +14,9 @@ SECRET_KEY = 'django-insecure-v*=4ctfyl&pe37%c8rs7oa4hoj3h_4w--q9nxw1j=ebd%91865
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['foodiology.com', 'foodiologyapi.com']
+ALLOWED_HOSTS = ['http://foodiologyrecipes.com', 'foodiologyapi.com', "localhost", "127.0.0.1"]
 
-WEBSITE_URL = 'http://foodiologyapi.com'
+WEBSITE_URL = 'http://foodiologyrecipes.com'
 
 # Application definition
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -29,26 +29,37 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,
 }
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     )
+# }
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    )
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
 }
+
+
+
+
 
 # CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://foodiology.com"
+    "http://foodiologyrecipes.com"
     
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
-    "http://foodiology.com"
+    "http://foodiologyrecipes.com"
 ]
 
 INSTALLED_APPS = [

@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from rest_framework.response import Response
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
@@ -24,3 +25,9 @@ def find(request):
         'users': users_serializer.data,
         # 'posts': posts_serializer.data
     }, safe=False)
+
+
+
+@api_view(['GET'])
+def test(request):
+    return Response("Hello, this is your string!")

@@ -8,6 +8,8 @@ from .forms import SignupForm, ProfileForm
 from .models import User, FriendshipRequest
 from .serializers import UserSerializer, FriendshipRequestSerializer
 
+
+
 @api_view(['GET'])
 def me(request):
     return JsonResponse({
@@ -42,7 +44,7 @@ def signup(request):
         send_mail(
             "Please verify your email",
             f"The url for activating your account is: {url}",
-            "noreply@foodiology.com",
+            "noreply@foodiologyrecipes.com",
             ["user.email"],
             fail_silently=False,
         )
