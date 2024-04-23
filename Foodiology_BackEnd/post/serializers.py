@@ -11,7 +11,7 @@ class PostAttachmentSerializer(serializers.ModelSerializer):
         fields = ('id', 'get_image',)
 
 class PostSerializer(serializers.ModelSerializer):
-    created_by = UserSerializer(read_only=True)
+    created_by = UserSerializer(read_only=False)
     attachments = PostAttachmentSerializer(read_only=True, many=True)
 
     class Meta:
@@ -26,7 +26,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('id', 'body', 'created_by', 'created_at_formatted',)
 
 class PostDetailSerializer(serializers.ModelSerializer):
-    created_by = UserSerializer(read_only=True)
+    created_by = UserSerializer(read_only=False)
     comments = CommentSerializer(read_only=True, many=True)
     attachments = PostAttachmentSerializer(read_only=True, many=True)
 
