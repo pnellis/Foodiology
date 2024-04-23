@@ -6,7 +6,7 @@ from .models import Post, Comment
 
 
 class PostSerializer(serializers.ModelSerializer):
-    created_by = UserSerializer(read_only=True)
+    created_by = UserSerializer(read_only=False)
 
     class Meta:
         model = Post
@@ -20,7 +20,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('id', 'body', 'created_by', 'created_at_formatted',)
 
 class PostDetailSerializer(serializers.ModelSerializer):
-    created_by = UserSerializer(read_only=True)
+    created_by = UserSerializer(read_only=False)
     comments = CommentSerializer(read_only=True, many=True)
 
     class Meta:
