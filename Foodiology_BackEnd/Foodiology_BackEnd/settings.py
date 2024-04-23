@@ -33,7 +33,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',  # This allows access to any user
     )
 }
 
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
     'account',
     'post',
     'find',
+    'search',
     'pantry',
     'recipes',
     'rest_framework',
