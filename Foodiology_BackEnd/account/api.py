@@ -43,7 +43,8 @@ def signup(request):
             "Please verify your email",
             f"The url for activating your account is: {url}",
             "noreply@foodiologyrecipes.com",
-            ["georgepm20002@gmail.com"],
+            # ["georgepm20002@gmail.com"],
+            [data.get('email')],
             fail_silently=False,
         )
 
