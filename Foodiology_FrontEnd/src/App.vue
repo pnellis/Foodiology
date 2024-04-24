@@ -64,7 +64,7 @@
       <div class="menu-right">
         <template v-if="userStore.user.isAuthenticated">
           <RouterLink :to="{ name: 'profile', params: { 'id': userStore.user.id } }">
-            <img :src="user.get_avatar || '/src/assets/logocat.png'" class="w-12 rounded-full" alt="User Avatar">
+            <img :src="userStore.user.avatar || '/src/assets/logocat.png'" class="w-12 rounded-full" alt="User Avatar">
           </RouterLink>
         </template>
 
