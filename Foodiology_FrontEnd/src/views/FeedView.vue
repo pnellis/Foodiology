@@ -68,10 +68,10 @@
                     </div>
 
                     <div class="p-4 border-t border-gray-100 flex justify-between">
-                        <label class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">
+                        <button class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">
                             <input type="file" ref="file" @change="onFileChange">
                             Attach image
-                        </label>
+                        </button>
 
                         <button class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg">Post</button>
                     </div>

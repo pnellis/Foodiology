@@ -33,7 +33,7 @@
           </div> -->
 
           <div>
-            <label>Avatar</label><br>
+            <label class="text-lg font-semibold">Avatar</label><br>
             <input type="file" ref="file" style="display: none">
             <button type="button" @click="$refs.file.click()" style="border: 1px solid #ccc; padding: 5px 10px;">Choose
               Image</button>

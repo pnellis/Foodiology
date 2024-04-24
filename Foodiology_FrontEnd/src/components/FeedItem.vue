@@ -70,7 +70,7 @@
 
     <div class="my-6 flex justify-between">
         <div class="flex space-x-6">
-            <div class="flex items-center space-x-2" @click="likePost(post.id)">
+            <div class="flex items-center space-x-2 like-button" @click="likePost(post.id)">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -191,5 +191,22 @@ export default {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+}
+
+.liked svg {
+    stroke: red;
+    /* Change color to red when liked */
+    transition: stroke 0.3s;
+}
+
+.like-button {
+    cursor: pointer;
+    /* Makes cursor a hand (pointer) on hover */
+}
+
+.like-button:active svg {
+    transform: scale(1.2);
+    /* Temporary scale to give feedback */
+    transition: transform 0.1s;
 }
 </style>
