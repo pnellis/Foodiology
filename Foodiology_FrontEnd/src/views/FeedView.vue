@@ -3,52 +3,64 @@
         <div class="main-center col-span-3 space-y-4">
             <div class="bg-white border border-gray-200 rounded-lg">
                 <form v-on:submit.prevent="submitForm" method="post">
-                    <div class="p-4">  
-                        <label for="title" class="block text-sm font-medium text-gray-700">Recipe Name<span class="text-red-500">*</span>:</label>
-                        <input v-model="title" type="text" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Recipe Name" required>
+                    <div class="p-4">
+                        <label for="title" class="block text-sm font-medium text-gray-700">Recipe Name<span
+                                class="text-red-500">*</span>:</label>
+                        <input v-model="title" type="text" class="p-4 w-full bg-gray-100 rounded-lg"
+                            placeholder="Recipe Name" required>
                     </div>
 
-                    <div class="p-4">  
-                        <label for="ingredients" class="block text-sm font-medium text-gray-700">Ingredients<span class="text-red-500">*</span>:</label>
-                        <textarea v-model="ingredients" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="Ingredients (separate by comma)"></textarea>
+                    <div class="p-4">
+                        <label for="ingredients" class="block text-sm font-medium text-gray-700">Ingredients<span
+                                class="text-red-500">*</span>:</label>
+                        <textarea v-model="ingredients" class="p-4 w-full bg-gray-100 rounded-lg"
+                            placeholder="Ingredients (separate by comma)"></textarea>
                     </div>
 
-                    <div class="p-4">  
-                        <label for="instructions" class="block text-sm font-medium text-gray-700">Steps<span class="text-red-500">*</span>:</label>
-                        <textarea v-model="instructions" class="p-4 w-full bg-gray-100 rounded-lg" placeholder="instructions"></textarea>
+                    <div class="p-4">
+                        <label for="instructions" class="block text-sm font-medium text-gray-700">Steps<span
+                                class="text-red-500">*</span>:</label>
+                        <textarea v-model="instructions" class="p-4 w-full bg-gray-100 rounded-lg"
+                            placeholder="instructions"></textarea>
                     </div>
 
                     <!-- Button to show additional fields -->
                     <div class="p-4">
-                        <button type="button" @click="toggleAdditionalFields" class="inline-block py-2 px-4 bg-pink-600 text-white rounded-lg">Show Additional Fields</button>
+                        <button type="button" @click="toggleAdditionalFields"
+                            class="inline-block py-2 px-4 bg-pink-600 text-white rounded-lg">Show Additional Fields</button>
                     </div>
 
                     <!-- Additional fields -->
                     <div v-show="showAdditionalFields" class="p-4 flex flex-wrap gap-4">
                         <div class="flex-1">
                             <label for="total_time" class="block text-sm font-medium text-gray-700">Total Time:</label>
-                            <input v-model="total_time" type="text" class="p-2 w-full bg-gray-100 rounded-lg" placeholder="Total Time">
+                            <input v-model="total_time" type="text" class="p-2 w-full bg-gray-100 rounded-lg"
+                                placeholder="Total Time">
                         </div>
 
                         <div class="flex-1">
                             <label for="yields" class="block text-sm font-medium text-gray-700">Yields:</label>
-                            <input v-model="yields" type="text" class="p-2 w-full bg-gray-100 rounded-lg" placeholder="Yields">
+                            <input v-model="yields" type="text" class="p-2 w-full bg-gray-100 rounded-lg"
+                                placeholder="Yields">
                         </div>
 
                         <div class="flex-1">
                             <label for="meal_type" class="block text-sm font-medium text-gray-700">Meal Type:</label>
-                            <input v-model="meal_type" type="text" class="p-2 w-full bg-gray-100 rounded-lg" placeholder="Meal Type">
+                            <input v-model="meal_type" type="text" class="p-2 w-full bg-gray-100 rounded-lg"
+                                placeholder="Meal Type">
                         </div>
 
                         <div class="flex-1">
                             <label for="cuisine_type" class="block text-sm font-medium text-gray-700">Cuisine Type:</label>
-                            <input v-model="cuisine_type" type="text" class="p-2 w-full bg-gray-100 rounded-lg" placeholder="Cuisine Type">
+                            <input v-model="cuisine_type" type="text" class="p-2 w-full bg-gray-100 rounded-lg"
+                                placeholder="Cuisine Type">
                         </div>
                     </div>
 
                     <div v-show="showAdditionalFields" class="p-4">
                         <label for="nutirents" class="block text-sm font-medium text-gray-700">Nutrients:</label>
-                        <textarea v-model="nutirents" class="p-2 w-full bg-gray-100 rounded-lg" placeholder="Nutrients (separate by comma)"></textarea>
+                        <textarea v-model="nutirents" class="p-2 w-full bg-gray-100 rounded-lg"
+                            placeholder="Nutrients (separate by comma)"></textarea>
                     </div>
 
                     <div id="preview" v-if="url" class="p-4">
@@ -66,20 +78,16 @@
                 </form>
             </div>
 
-            <div 
-                class="p-4 bg-white border border-gray-200 rounded-lg"
-                v-for="post in posts"
-                v-bind:key="post.id"
-            >
-                <FeedItem v-bind:post="post" v-on:deletePost="deletePost"/>
+            <div class="p-4 bg-white border border-gray-200 rounded-lg" v-for="post in posts" v-bind:key="post.id">
+                <FeedItem v-bind:post="post" v-on:deletePost="deletePost" />
             </div>
 
         </div>
 
         <div class="main-right col-span-1 space-y-4">
-            <RecommendedRecipes/>
-            <TrendingRecipes/>
-              
+            <RecommendedRecipes />
+            <TrendingRecipes />
+
         </div>
     </div>
 </template>
@@ -204,28 +212,35 @@ export default {
 
         toggleAdditionalFields() {
             this.showAdditionalFields = !this.showAdditionalFields;
-        }, 
+        },
 
         deletePost(id) {
             this.posts = this.posts.filter(post => post.id !== id)
         },
-        // submitForm() {
-        //     console.log('submitForm', this.body)
-
-        //     axios
-        //         .post('/api/posts/create/', {
-        //             'body': this.body
-        //         })
-        //         .then(response => {
-        //             console.log('data', response.data)
-
-        //             this.posts.unshift(response.data)
-        //             this.body = ''
-        //         })
-        //         .catch(error => {
-        //             console.log('error', error)
-        //         })
-        // }
     }
 }
 </script>
+
+<style>
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/* Responsive image styling */
+.responsive-image {
+    width: 100%;
+    /* Makes the image responsive */
+    height: auto;
+    /* Maintains aspect ratio */
+    max-width: 400px;
+    /* Optional: limits the size to a maximum width */
+}
+</style>
+
