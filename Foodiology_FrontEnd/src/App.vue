@@ -263,7 +263,7 @@ export default {
 .logo-cat {
   width: 10vw;
   /* Make logo scalable */
-  max-width: 50px;
+  max-width: 80px;
   /* Set max width for logo */
   height: auto;
   /* Maintain aspect ratio */
@@ -273,7 +273,7 @@ export default {
 .logo-image {
   width: 20vw;
   /* Make logo scalable */
-  max-width: 150px;
+  max-width: 250px;
   /* Set max width for logo */
   height: auto;
   /* Maintain aspect ratio */
