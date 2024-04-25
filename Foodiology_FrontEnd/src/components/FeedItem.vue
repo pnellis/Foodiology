@@ -17,10 +17,16 @@
         <h2 class="font-bold text-xl">{{ post.title }}</h2>
         <div class="my-4"></div>
         <div>
-            <img v-if="!post.image_url" v-for="image in post.attachments" :key="image.id" :src="image.get_image"
-                class="responsive-image rounded-lg">
-
-            <img v-else :src="post.image_url" alt="Recipe Image" class="responsive-image rounded-lg">
+            <img v-if="!post.image_url" 
+                v-for="image in post.attachments" 
+                :key="image.id" 
+                :src="image.get_image" 
+                class="max-w-[470px] h-auto rounded-lg">
+            
+            <img v-else 
+                :src="post.image_url" 
+                alt="Recipe Image" 
+                class="max-w-[470px] h-auto rounded-lg">
         </div>
         <div class="my-4"></div>
         <div>
@@ -116,12 +122,23 @@
 
                 <span class="text-red-500 text-xs">Delete post</span>
             </div>
+
+            <div class="flex items-center space-x-2" @click="reportPost">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-orange-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5" />
+                </svg>
+
+                <span class="text-orange-500 text-xs">Report post</span>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { RouterLink } from 'vue-router'
+import { useUserStore } from '@/stores/user'
+import { useToastStore } from '@/stores/toast'
 
 export default {
     props: {
@@ -129,6 +146,16 @@ export default {
     },
 
     emits: ['deletePost'],
+
+    setup() {
+        const userStore = useUserStore()
+        const toastStore = useToastStore()
+
+        return {
+            userStore,
+            toastStore
+        }
+    },
 
     data() {
         return {
@@ -171,12 +198,25 @@ export default {
                     console.log("error", error);
                 })
         },
+        reportPost() {
+            axios
+                .post(`/api/posts/${this.post.id}/report/`)
+                .then(response => {
+                    console.log(response.data)
+
+                    this.toastStore.showToast(5000, 'The post was reported', 'bg-emerald-500')
+                })
+                .catch(error => {
+                    console.log("error", error);
+                })
+        },
         toggleExtraModal() {
             console.log('toggleExtraModal')
 
             this.showExtraModal = !this.showExtraModal
         }
-    }
+    },
+    components: { RouterLink }
 }
 </script>
 

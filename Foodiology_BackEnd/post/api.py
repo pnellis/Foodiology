@@ -177,6 +177,7 @@ from .forms import PostForm, AttachmentForm
 from .models import Post, Like, Comment
 from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer
 
+from rest_framework import status
 
 @api_view(['GET'])
 def post_list(request):
@@ -288,3 +289,26 @@ def post_delete(request, pk):
     post.delete()
 
     return JsonResponse({'message': 'post deleted'})
+
+@api_view(['DELETE'])
+def post_delete(request, pk):
+    try:
+        post = Post.objects.filter(created_by=request.user).get(pk=pk)
+        user = request.user
+        if post:
+            user.posts_count = user.posts_count - 1
+            user.save()
+            post.delete()
+            return JsonResponse({'message': 'post deleted'})
+        else:
+            return JsonResponse({'error': 'Post not found or you are not authorized to delete it'}, status=status.HTTP_404_NOT_FOUND)
+    except Post.DoesNotExist:
+        return JsonResponse({'error': 'Post not found or you are not authorized to delete it'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def post_report(request, pk):
+    post = Post.objects.get(pk=pk)
+    post.reported_by_users.add(request.user)
+    post.save()
+
+    return JsonResponse({'message': 'post reported'})
