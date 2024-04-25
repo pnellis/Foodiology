@@ -18,7 +18,7 @@
             <div class="img-container">
               <img src="@/assets/page.jpg" alt="page" />
             </div>
-            <h3>Page</h3>
+            <h3>Page Nellis</h3>
             <p>B.S. Quantitative Sciences and Informatics</p>
             <div class="icons">
               <a href="https://www.linkedin.com/in/page-nellis?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
