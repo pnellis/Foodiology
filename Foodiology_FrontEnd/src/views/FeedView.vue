@@ -68,10 +68,10 @@
                     </div>
 
                     <div class="p-4 border-t border-gray-100 flex justify-between">
-                        <button class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">
+                        <label class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">
                             <input type="file" ref="file" @change="onFileChange">
                             Attach image
-                        </button>
+                        </label>
 
                         <button class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg">Post</button>
                     </div>
@@ -91,19 +91,6 @@
         </div>
     </div>
 </template>
-
-<style>
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-</style>
 
 <script>
 import axios from 'axios'
@@ -233,12 +220,11 @@ input[type="file"] {
     cursor: pointer;
 }
 
-/* Responsive image styling */
-.responsive-image {
+.Responsive image styling .responsive-image {
     width: 100%;
-    /* Makes the image responsive */
+    /* Makes the image responsive  */
     height: auto;
-    /* Maintains aspect ratio */
+    /* Maintains aspect ratio  */
     max-width: 400px;
     /* Optional: limits the size to a maximum width */
 }

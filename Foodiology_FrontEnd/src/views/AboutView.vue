@@ -227,21 +227,32 @@ h1 {
   transform: scale(1.15);
 }
 
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 640px) {
+
+  .column {
+    flex: 1 1 100%;
+    /* Each card takes up half the width of the container */
+    max-width: 100%;
+    /* Each card takes up half the width of the container */
+  }
+
+
+
+  .card img {
+    width: 100%;
+    /* Ensure the image fills the container */
+    height: auto;
+    /* Maintain aspect ratio */
+  }
+}
+
 /* fit different devices */
-@media screen and (min-width: 770px) {
+@media screen and (min-width: 640px) {
   section {
     padding: 1em 7em;
   }
 
-  /* .column {
-      
-    flex: 0 0 calc(33.33% - 20px); 
-    max-width: calc(33.33% - 20px);
-    padding: 1em;
-    margin: 10px; /* Adjust this value to set the margin between columns */
-  /* }  */
-
-  /* Base styles */
   .column {
     flex: 1 1 100%;
     /* Full width on small screens */
@@ -251,6 +262,8 @@ h1 {
     margin: 10px;
     /* Maintain some spacing between cards */
   }
+
+
 
   /* Medium screens (tablets) */
   @media (min-width: 640px) {

@@ -6,10 +6,10 @@
 
                 <p><strong>{{ user.name }}</strong></p>
 
-                <div class="mt-6 flex space-x-8 justify-around" v-if="user.id">
-                    <RouterLink :to="{ name: 'friends', params: { id: user.id } }" class="text-xs text-gray-500">{{
+                <div class="flex justify-center items-center mt-6" v-if="user.id">
+                    <RouterLink :to="{ name: 'friends', params: { id: user.id } }" class="text-xs text-gray-500 block">{{
                         user.friends_count }} friends</RouterLink>
-                    <p class="text-xs text-gray-500"> {{ user.posts_count }} recipes</p>
+                    <p class="text-xs text-gray-500 block"> {{ user.posts_count }} recipes</p>
                 </div>
 
                 <div class="mt-6">
@@ -168,3 +168,18 @@ export default {
     }
 }
 </script>
+
+<style>
+/* Adjustments for the flex container */
+.flex.justify-center.items-center>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex.justify-center.items-center .text-xs {
+    margin: 0.4vw;
+    /* Adjust margin as needed */
+}
+
+/* Additional styles for buttons if necessary */
+</style>

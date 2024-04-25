@@ -1,11 +1,11 @@
 <template>
   <nav class="py-10 px-8 border-b border-gray-200">
-    <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
+    <div class="nav-container flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
       <div class="menu-left">
         <RouterLink to="/" class="icon-container">
           <a href="#" class="text-xl" style="display: flex; align-items: center;">
-            <img src="@/assets/logocat.png" class="rounded-full" style="width: 50px; height: 50px; margin-right: 8px;">
-            <img src="@/assets/foodiology.png" alt="Foodiology Logo" class="logo-image" style="margin-right: 8px;">
+            <img src="@/assets/logocat.png" class="logo-cat">
+            <img src="@/assets/foodiology.png" alt="Foodiology Logo" class="logo-image">
           </a>
         </RouterLink>
       </div>
@@ -225,12 +225,10 @@ export default {
 
 </script>
 
-
-
 <style>
 .menu-center .icon-container {
   position: relative;
-  display: inline-block;
+  display: flex;
 }
 
 .menu-center .icon-container:hover .tooltip {
@@ -253,4 +251,34 @@ export default {
 .menu-center .icon-container:hover .icon {
   color: pink;
 }
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  /* Allow items to wrap onto multiple lines */
+}
+
+.logo-cat {
+  width: 10vw;
+  /* Make logo scalable */
+  max-width: 50px;
+  /* Set max width for logo */
+  height: auto;
+  /* Maintain aspect ratio */
+  margin-right: 8px;
+}
+
+.logo-image {
+  width: 20vw;
+  /* Make logo scalable */
+  max-width: 150px;
+  /* Set max width for logo */
+  height: auto;
+  /* Maintain aspect ratio */
+  margin-right: 8px;
+}
+
+/* Add styles for icon links and user authentication links as needed */
 </style>
