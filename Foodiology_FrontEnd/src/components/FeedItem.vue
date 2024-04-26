@@ -9,7 +9,7 @@
                 </strong>
             </p>
         </div>
-        <p class="text-gray-600">{{ post.created_at_formatted }}</p>
+        <p class="text-xs sm:text-sm md:text-base text-gray-600">{{ post.created_at_formatted }}</p>
     </div>
 
     <!-- Displaying the recipe details -->
@@ -17,16 +17,10 @@
         <h2 class="font-bold text-xl">{{ post.title }}</h2>
         <div class="my-4"></div>
         <div>
-            <img v-if="!post.image_url" 
-                v-for="image in post.attachments" 
-                :key="image.id" 
-                :src="image.get_image" 
-                class="max-w-[470px] h-auto rounded-lg">
-            
-            <img v-else 
-                :src="post.image_url" 
-                alt="Recipe Image" 
-                class="max-w-[470px] h-auto rounded-lg">
+            <img v-if="!post.image_url" v-for="image in post.attachments" :key="image.id" :src="image.get_image"
+                class="responsive-image rounded-lg">
+
+            <img v-else :src="post.image_url" alt="Recipe Image" class="responsive-image rounded-lg">
         </div>
         <div class="my-4"></div>
         <div>
@@ -74,35 +68,35 @@
         </div>
     </div>
 
-    <div class="my-6 flex justify-between">
-        <div class="flex space-x-6">
-            <div class="flex items-center space-x-2 like-button" @click="likePost(post.id)">
+    <div class="my-6 flex flex-wrap justify-between space-x-2 md:space-x-6">
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <div class="flex items-center space-x-1 md:space-x-2 like-button" @click="likePost(post.id)">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
+                    stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                 </svg>
 
-                <span class="text-gray-500 text-xs"> {{ post.likes_count }} likes </span>
+                <span class="text-gray-500 text-xs md:text-xxs"> {{ post.likes_count }} likes </span>
             </div>
 
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-1 md:space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
+                    stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z">
                     </path>
                 </svg>
 
-                <RouterLink :to="{ name: 'postview', params: { id: post.id } }" class="text-gray-500 text-xs">{{
+                <RouterLink :to="{ name: 'postview', params: { id: post.id } }" class="text-gray-500 text-xs md:text-xxs">{{
                     post.comments_count }} comments</RouterLink>
             </div>
         </div>
 
-        <div>
+        <div class="flex items-center">
             <div @click="toggleExtraModal">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
+                    stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z">
                     </path>
@@ -124,8 +118,10 @@
             </div>
 
             <div class="flex items-center space-x-2" @click="reportPost">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-orange-500">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6 text-orange-500">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5" />
                 </svg>
 
                 <span class="text-orange-500 text-xs">Report post</span>
@@ -146,7 +142,6 @@ export default {
     },
 
     emits: ['deletePost'],
-
     setup() {
         const userStore = useUserStore()
         const toastStore = useToastStore()
@@ -210,6 +205,7 @@ export default {
                     console.log("error", error);
                 })
         },
+
         toggleExtraModal() {
             console.log('toggleExtraModal')
 
@@ -228,7 +224,8 @@ export default {
 }
 
 .responsive-image {
-    max-width: 100%;
+    width: 100%;
+    max-width: 470px;
     height: auto;
     border-radius: 10px;
 }

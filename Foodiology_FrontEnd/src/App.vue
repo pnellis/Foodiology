@@ -1,7 +1,7 @@
 <template>
   <nav class="py-10 px-8 border-b border-gray-200">
-    <div class="nav-container flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
-      <div class="menu-left">
+    <div class="nav-container flex flex-row md:flex-row justify-between items-center max-w-7xl mx-auto">
+      <div class="menu-left flex-shrink-0">
         <RouterLink to="/" class="icon-container">
           <a href="#" class="text-xl" style="display: flex; align-items: center;">
             <img src="@/assets/logocat.png" class="logo-cat">
@@ -10,7 +10,7 @@
         </RouterLink>
       </div>
 
-      <div class="menu-center flex space-x-12">
+      <div class="menu-center flex-grow justify-center flex space-x-12">
         <RouterLink to="/" class="icon-container">
           <div class="tooltip">Home</div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -61,7 +61,7 @@
         </RouterLink>
       </div>
 
-      <div class="menu-right">
+      <div class="menu-right flex-shrink-0">
         <template v-if="userStore.user.isAuthenticated">
           <RouterLink :to="{ name: 'profile', params: { 'id': userStore.user.id } }">
             <img :src="userStore.user.avatar || '/src/assets/logocat.png'" class="w-12 rounded-full" alt="User Avatar">
@@ -230,6 +230,7 @@ export default {
   position: relative;
   display: flex;
 }
+
 
 .menu-center .icon-container:hover .tooltip {
   display: block;
