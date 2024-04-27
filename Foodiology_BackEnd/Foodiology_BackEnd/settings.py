@@ -114,19 +114,30 @@ WSGI_APPLICATION = 'Foodiology_BackEnd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# import pymysql
+# pymysql.install_as_MySQLdb()
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': "foodiology_test2",
+#         'USER': "admin",
+#         'PASSWORD': "admin2024",
+#         'HOST': "mytestmysql.cfomu6wo4ku5.us-east-1.rds.amazonaws.com",
+#         'PORT': "3306",
+#     }
+# }
 import pymysql
 pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "foodiology_test2",
+        'NAME': "foodiology_final",
         'USER': "admin",
-        'PASSWORD': "admin2024",
-        'HOST': "mytestmysql.cfomu6wo4ku5.us-east-1.rds.amazonaws.com",
+        'PASSWORD': "Foodiology123",
+        'HOST': "foodiology.cxwwgy2c4rn6.us-east-1.rds.amazonaws.com",
         'PORT': "3306",
     }
 }
-
 
 
 # Password validation
