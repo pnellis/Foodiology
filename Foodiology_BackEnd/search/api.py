@@ -1,21 +1,8 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-
-
 from post.models import Post
+from pantry.models import Ingredient
 from post.serializers import PostSerializer
-
-# @api_view(['POST'])
-# def find(request):
-#     data = request.data
-#     query = data['query']
-
-#     posts = Post.objects.filter(ingredients__icontains=query)
-#     posts_serializer = PostSerializer(posts, many=True)
-
-#     return JsonResponse({
-#         'posts': posts_serializer.data
-#     }, safe=False)
 from django.db.models import Q
 
 @api_view(['POST'])
@@ -24,8 +11,23 @@ def find(request):
     query = data['query']
     filters = data.get('filters', {})
 
-    # Build the base query
-    base_query = Q(ingredients__icontains=query)
+    user_input_ingredients = [ingredient.strip() for ingredient in query.split(',') if ingredient.strip()]
+
+    pantry_ingredients_list = []
+
+    # Only fetch pantry ingredients if the user is authenticated
+    if request.user.is_authenticated:
+        pantry_ingredients = Ingredient.objects.filter(user=request.user)
+        pantry_ingredients_list = [ingredient.ingredient_name for ingredient in pantry_ingredients]
+
+    # Combine ingredients from user input and pantry if available
+    all_ingredients = set(user_input_ingredients + pantry_ingredients_list)
+
+    # Build the base query using Q objects for each ingredient
+    base_query = Q()
+    for ingredient in all_ingredients:
+        base_query |= Q(ingredients__iregex=r'\b{}\b(s)?'.format(ingredient))  # Matches ingredient as a whole word, optionally followed by 's'
+       
 
     # Apply additional filters if they exist
     if filters.get('totalTime'):
