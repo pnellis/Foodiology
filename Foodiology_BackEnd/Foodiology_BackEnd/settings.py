@@ -14,7 +14,9 @@ SECRET_KEY = 'django-insecure-v*=4ctfyl&pe37%c8rs7oa4hoj3h_4w--q9nxw1j=ebd%91865
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['foodiologyrecipes.com', 'localhost', '127.0.0.1', '67.207.88.144']
+
+WEBSITE_URL = 'https://foodiologyrecipes.com'
 
 
 # Application definition

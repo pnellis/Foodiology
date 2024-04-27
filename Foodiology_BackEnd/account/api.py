@@ -37,7 +37,7 @@ def signup(request):
         user.is_active = False
         user.save()
 
-        url = f'http://foodiologyrecipes.com/activateemail/?email={user.email}&id={user.id}'
+        url = f'https://foodiologyrecipes.com/activateemail/?email={user.email}&id={user.id}'
 
         send_mail(
             "Please verify your email",
