@@ -25,7 +25,6 @@
         <div class="my-4"></div>
         <div>
             <h3 class="font-semibold">Ingredients:</h3>
-            <!-- <p>{{ post.ingredients }}</p > -->
             <ul>
                 <li v-for="ingredient in post.ingredients.split(',')" :key="ingredient">- {{ ingredient.trim() }}</li>
             </ul>
@@ -33,7 +32,6 @@
         <div class="my-4"></div>
         <div>
             <h3 class="font-semibold">Steps:</h3>
-            <!-- <p>{{ post.instructions }}</p > -->
             <ul>
                 <li v-for="step in post.instructions.split('.')" :key="step">- {{ step.trim() }}.</li>
             </ul>
@@ -61,7 +59,6 @@
         <div class="my-4"></div>
         <div>
             <h3 class="font-semibold">Nutrient:</h3>
-            <!-- <p>{{ post.nutirents }}</p > -->
             <ul>
                 <li v-for="nutrient in post.nutirents.split(',')" :key="nutrient">{{ nutrient.trim() }}</li>
             </ul>
@@ -159,10 +156,6 @@ export default {
     },
 
     methods: {
-        // formatDate(datetime) {
-        //     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-        //     return new Date(datetime).toLocaleDateString('en-US', options);
-        // },
         formatDate(datetime) {
             const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
             return new Date(datetime).toLocaleDateString('en-US', options);
@@ -221,7 +214,6 @@ export default {
 .avatar {
     width: 40px;
     height: 40px;
-    /* Maintain the aspect ratio */
 }
 
 .responsive-image {
@@ -233,18 +225,15 @@ export default {
 
 .liked svg {
     stroke: red;
-    /* Change color to red when liked */
     transition: stroke 0.3s;
 }
 
 .like-button {
     cursor: pointer;
-    /* Makes cursor a hand (pointer) on hover */
 }
 
 .like-button:active svg {
     transform: scale(1.2);
-    /* Temporary scale to give feedback */
     transition: transform 0.1s;
 }
 </style>

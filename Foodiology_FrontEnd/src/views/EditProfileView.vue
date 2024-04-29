@@ -27,11 +27,6 @@
               class="w-full mt-2 py-3 px-4 border border-pink-600 rounded-lg">
           </div>
 
-          <!-- <div>
-            <label>avatar</label><br>
-            <input type="file" ref="file">
-          </div> -->
-
           <div>
             <label class="text-lg font-semibold">Avatar</label><br>
             <input type="file" ref="file" style="display: none">

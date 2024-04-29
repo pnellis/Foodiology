@@ -24,6 +24,3 @@ class Nutrients(models.Model):
 class Recipe_Ingredients(models.Model):
     recipe = models.ForeignKey(Recipe, to_field = 'id', on_delete = models.CASCADE)
     ingredient_id = models.ForeignKey(Ingredients, to_field = 'id', on_delete = models.CASCADE)
-
-
-# Create your models here.

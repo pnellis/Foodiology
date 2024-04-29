@@ -177,7 +177,6 @@ export default {
 </script>
 
 <style>
-/* Adjustments for the flex container */
 .flex.justify-center.items-center>div {
     display: flex;
     flex-direction: column;
@@ -185,8 +184,6 @@ export default {
 
 .flex.justify-center.items-center .text-xs {
     margin: 0.4vw;
-    /* Adjust margin as needed */
 }
 
-/* Additional styles for buttons if necessary */
 </style>

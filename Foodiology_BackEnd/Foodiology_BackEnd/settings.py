@@ -25,9 +25,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'foodiologyrecipes1@gmail.com' # Your Gmail address
-EMAIL_HOST_PASSWORD = 'hawoachswvekvmyh' # The app password you generated
-DEFAULT_FROM_EMAIL = 'foodiologyrecipes1@gmail.com' # Your Gmail addres
+EMAIL_HOST_USER = 'foodiologyrecipes1@gmail.com' 
+EMAIL_HOST_PASSWORD = 'hawoachswvekvmyh' 
+DEFAULT_FROM_EMAIL = 'foodiologyrecipes1@gmail.com' 
 
 AUTH_USER_MODEL = 'account.User'
 
@@ -42,12 +42,10 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.AllowAny',  # This allows access to any user
+        'rest_framework.permissions.AllowAny',  
     )
 }
 
-# CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
@@ -109,22 +107,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Foodiology_BackEnd.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# import pymysql
-# pymysql.install_as_MySQLdb()
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': "foodiology_test2",
-#         'USER': "admin",
-#         'PASSWORD': "admin2024",
-#         'HOST': "mytestmysql.cfomu6wo4ku5.us-east-1.rds.amazonaws.com",
-#         'PORT': "3306",
-#     }
-# }
 import pymysql
 pymysql.install_as_MySQLdb()
 DATABASES = {
@@ -137,10 +119,6 @@ DATABASES = {
         'PORT': "3306",
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -157,10 +135,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/New_York'
@@ -170,15 +144,10 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

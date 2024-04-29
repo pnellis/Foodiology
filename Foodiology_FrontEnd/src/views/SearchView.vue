@@ -103,25 +103,6 @@ export default {
           this.pantryIngredients = response.data.map(item => item.ingredient_name);
         }).catch(error => console.error('Failed to load pantry ingredients:', error));
     },
-    // submitForm() {
-    //   let searchQuery = this.query;
-    //   if (!searchQuery) {
-    //     searchQuery = this.pantryIngredients.join(' '); // Join the ingredients into a single string
-    //   }
-    //   console.log('submitForm', searchQuery);
-
-    //   axios
-    //     .post('/api/search/', {
-    //       query: searchQuery
-    //     })
-    //     .then(response => {
-    //       console.log('response:', response.data);
-    //       this.posts = response.data.posts;
-    //     })
-    //     .catch(error => {
-    //       console.log('error:', error);
-    //     });
-    // },
     submitForm() {
       let searchQuery = this.query;
       if (!searchQuery) {

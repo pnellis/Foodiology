@@ -1,6 +1,5 @@
 <template>
     <div class="flex min-h-screen">
-      <!-- Left Side: Form Area -->
       <div class="flex-1 flex flex-col grid-cols-2 px-5 py-5">
         <div class="max-w-md w-full mx-auto">
           <h2 class="text-3xl font-bold text-center mb-4">Log in to your Foodiology Account</h2>
@@ -31,7 +30,6 @@
         </div>
       </div>
   
-      <!-- Right Side: Image Area -->
       <div class="flex-1 hidden lg:block">
         <img class="object-cover w-full h-full" src="@/assets/HomePhoto.jpg" alt="Workspace">
       </div>

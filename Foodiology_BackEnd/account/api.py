@@ -46,8 +46,6 @@ def signup(request):
             [data.get('email')],
             fail_silently=False,
         )
-
-        # Send verification email later!
     else:
         message = form.errors.as_json()
 
@@ -130,7 +128,8 @@ def handle_request(request, pk, status):
         user.save()
 
         request_user = request.user
-        request_user.friends.add(user) # This line ensures mutual friendship is recorded
+        # This line ensures mutual friendship is recorded
+        request_user.friends.add(user) 
         request_user.friends_count = request_user.friends_count + 1
         request_user.save()
 

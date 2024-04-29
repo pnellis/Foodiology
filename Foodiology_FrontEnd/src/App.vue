@@ -212,9 +212,7 @@ export default {
   },
   computed: {
     mainClass() {
-      // Define the routes that should have the specific style
       const styledRoutes = ['/', '/about', '/login'];
-      // Check if the current route is one of the styled routes /friends/${this.$route.params.id}/request/`
       if (styledRoutes.includes(this.$route.path)) {
         return ' '; // Apply no style
       }
@@ -281,5 +279,4 @@ export default {
   margin-right: 8px;
 }
 
-/* Add styles for icon links and user authentication links as needed */
 </style>

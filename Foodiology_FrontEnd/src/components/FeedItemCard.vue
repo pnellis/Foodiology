@@ -1,7 +1,6 @@
 <template>
     <div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-70">
       <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-xl h-52">
-        <!-- <img :src="post.image_url" alt="recipe-image" class="w-full h-full object-cover"> -->
         <img v-if="!post.image_url" 
          v-for="image in post.attachments" 
          :key="image.id" 
@@ -43,6 +42,5 @@
   </script>
   
   <style>
-  /* Add your card styles here */
   </style>
   

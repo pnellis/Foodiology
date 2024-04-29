@@ -24,13 +24,11 @@
                             placeholder="instructions"></textarea>
                     </div>
 
-                    <!-- Button to show additional fields -->
                     <div class="p-4">
                         <button type="button" @click="toggleAdditionalFields"
                             class="inline-block py-2 px-4 bg-pink-600 text-white rounded-lg">Show Additional Fields</button>
                     </div>
 
-                    <!-- Additional fields -->
                     <div v-show="showAdditionalFields" class="p-4 flex flex-wrap gap-4">
                         <div class="flex-1">
                             <label for="total_time" class="block text-sm font-medium text-gray-700">Total Time:</label>
@@ -130,8 +128,6 @@ export default {
     computed: {
         canSubmit() {
             return this.title.trim() && this.ingredients.trim() && this.instructions.trim();
-            // return this.recipe_name.trim() && this.ingredients.trim() && this.steps.trim() && this.image;
-        }
     },
 
     methods: {
@@ -190,7 +186,6 @@ export default {
                     this.showAdditionalFields = false
                     this.$refs.file.value = null
                     this.url = null
-                    // this.image = null
                 })
                 .catch(error => {
                     console.log('error', error)
@@ -226,7 +221,6 @@ input[type="file"] {
     height: auto;
     /* Maintains aspect ratio  */
     max-width: 400px;
-    /* Optional: limits the size to a maximum width */
 }
 </style>
 

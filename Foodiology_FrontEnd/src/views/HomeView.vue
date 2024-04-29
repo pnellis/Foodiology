@@ -18,8 +18,6 @@
         <div class="lg:pr-8 lg:pt-4">
           <div class="lg:max-w-lg">
             <h2 class="mt-2 text-3xl font-bold tracking-tight text-pink-600">Create an Account With us Today</h2>
-            <!-- <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</p>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</p> -->
             <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
               <div class="relative pl-9">
                 <dt class="inline font-semibold text-gray-900">
@@ -50,7 +48,7 @@
                 </dt>
                 <dd class="inline">Add your ingredients to your pantry, recieved personalized recommendations, generate a personalized shopping cart.</dd>
                 
-                <div class="mt-6"> <!-- Add a div wrapper for spacing and button styling -->
+                <div class="mt-6"> 
                   <RouterLink to="/signup" class="py-4 px-6 bg-pink-600 text-white rounded-lg">Create an Account Today</RouterLink>
                 </div>
             
@@ -73,11 +71,9 @@ main {
   height: 100vh;
 }
 .welcome-container {
-  /* text-align: center;
-  max-width: 600px; */
   position: relative;
   width: 100%;
-  height: 100vh; /* Adjust the height as needed */
+  height: 100vh; 
   background-image: url('@/assets/HomePhoto.jpg');
   background-size: cover;
   background-position: center;
@@ -125,7 +121,7 @@ p {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  height: 200vh; /* Adjust the height as needed */
+  height: 200vh; 
   margin: 0;
   padding: 0;
 }

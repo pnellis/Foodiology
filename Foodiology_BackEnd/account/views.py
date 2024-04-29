@@ -17,11 +17,3 @@ def activateemail(request):
     else:
         return HttpResponse('The parameters are not valid.')
 
-    # if email and id:
-
-    #     user = User.objects.get(id=user_id, email=email)
-    #     user.is_active = True
-    #     user.save()
-    #     return HttpResponse('Your account is now activated. Please go to Foodiology.com to login.')
-    # else:
-    #     return HttpResponse('The parateters are not valid.')
