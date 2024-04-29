@@ -177,6 +177,7 @@ export default {
                 })
                 .catch(error => {
                     console.log('error', error)
+                    this.toastStore.showToast(5000, 'You must be logged in to like this post', 'bg-emerald-500')
                 })
         },
         deletePost() {
