@@ -31,6 +31,7 @@ To get started with our project on the local version, you must first create an e
   * pip3 install djangorestframework-simplejwt
   * pip3 install pillow
   * pip3 install django-cors-headers
+  * pip3 install pymysql
 To run the backend:
   * cd Foodiology_BackEnd
   * python manage.py runserver 
@@ -38,5 +39,5 @@ To run the front end:
   * cd Foodiology_FrontEnd
   * npm run dev
 
-
+### See further documentation in the Foodiology wiki!
 
