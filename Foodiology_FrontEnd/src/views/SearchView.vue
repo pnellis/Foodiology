@@ -133,7 +133,7 @@ export default {
         .then(response => {
           console.log('response:', response.data);
           if (response.data.posts.length === 0) {
-            this.toastStore.showToast(5000, 'No matching recipes based on inputted ingredient(s)', 'bg-red-300');
+            this.toastStore.showToast(5000, 'No matching recipes based on your input ingredient(s) and preferences', 'bg-red-300');
           } else {
             this.posts = response.data.posts;
           }
