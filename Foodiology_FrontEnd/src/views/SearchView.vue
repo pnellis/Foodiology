@@ -37,6 +37,15 @@
               <option>Mexican</option>
               <option>Chinese</option>
               <option>Indian</option>
+              <option>American</option>
+              <option>Middle Eastern</option>
+              <option>Japanese</option>
+              <option>Greek</option>
+              <option>German</option>
+              <option>Filipino</option>
+              <option>Southern</option>
+              <option>French</option>
+              <option>Asian</option>
             </select>
             <input v-model="filters.nutrients" type="text" class="p-2 w-full md:w-1/4 bg-gray-100 rounded-lg"
               placeholder="Nutrients (e.g., high protein)">
