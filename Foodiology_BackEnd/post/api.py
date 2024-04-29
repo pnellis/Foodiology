@@ -1,12 +1,13 @@
 from django.http import JsonResponse
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 from account.models import User, FriendshipRequest
 from account.serializers import UserSerializer
 
 from .forms import PostForm, AttachmentForm
-from .models import Post, Like, Comment
+from .models import Post, Like, Comment, UserLikedPost
 from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer
 
 from rest_framework import status
@@ -91,21 +92,37 @@ def post_create(request):
     else:
         return JsonResponse({'error': 'add somehting here later!'})
     
-@api_view(['POST'])
-def post_like(request, pk):
-    post = Post.objects.get(pk=pk)
+# @api_view(['POST'])
+# def post_like(request, pk):
+#     post = Post.objects.get(pk=pk)
     
-    if not post.likes.filter(created_by=request.user):
-        like = Like.objects.create(created_by=request.user)
+#     if not post.likes.filter(created_by=request.user):
+#         like = Like.objects.create(created_by=request.user)
 
+#         post = Post.objects.get(pk=pk)
+#         post.likes_count = post.likes_count + 1
+#         post.likes.add(like)
+#         post.save()
+
+#         return JsonResponse({'message': 'liked_created'})
+#     else: 
+#         return JsonResponse({'message': 'post already liked'})
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])  # Ensures that only authenticated users can like posts
+def post_like(request, pk):
+    try:
         post = Post.objects.get(pk=pk)
-        post.likes_count = post.likes_count + 1
-        post.likes.add(like)
-        post.save()
+        # Attempt to create a new like entry
+        user_like, created = UserLikedPost.objects.get_or_create(user=request.user, post=post)
+        if created:
+            post.likes_count += 1
+            post.save()
+            return JsonResponse({'message': 'Like created'}, status=201)
+        else:
+            return JsonResponse({'message': 'Post already liked'}, status=400)
+    except Post.DoesNotExist:
+        return JsonResponse({'error': 'Post not found'}, status=404)
 
-        return JsonResponse({'message': 'liked_created'})
-    else: 
-        return JsonResponse({'message': 'post already liked'})
 
 @api_view(['POST'])
 def post_create_comment(request, pk):
@@ -164,3 +181,11 @@ def random_recipe(request):
         return JsonResponse(serializer.data)
     else:
         return JsonResponse({'error': 'No recipe posts available'}, status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def liked_posts(request):
+    user_liked_posts = UserLikedPost.objects.filter(user=request.user).select_related('post')
+    serializer = PostSerializer([ulp.post for ulp in user_liked_posts], many=True)
+    return JsonResponse(serializer.data, safe=False)
+

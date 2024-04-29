@@ -33,7 +33,7 @@
                         <div class="flex-1">
                             <label for="total_time" class="block text-sm font-medium text-gray-700">Total Time:</label>
                             <input v-model="total_time" type="text" class="p-2 w-full bg-gray-100 rounded-lg"
-                                placeholder="Total Time">
+                                placeholder="Total Time (min)">
                         </div>
 
                         <div class="flex-1">

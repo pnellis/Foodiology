@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/<uuid:id>/', api.post_list_profile, name='post_list_profile'),
     path('create/', api.post_create, name='post_create'),
     path('random/', api.random_recipe, name='random_recipe'),
+    path('liked/', api.liked_posts, name='liked_posts'),
 ]

@@ -27,7 +27,7 @@
                   
                   Share Recipes.
                 </dt>
-                <dd class="inline">Upload your own recipes to share with the Foodiology community. Add reviews and share your thoughts.</dd>
+                <dd class="inline">Upload your own recipes to share with the Foodiology community.</dd>
               </div>
               <div class="relative pl-9">
                 <dt class="inline font-semibold text-gray-900">
@@ -46,7 +46,7 @@
                   
                   Personalized Experience.
                 </dt>
-                <dd class="inline">Add your ingredients to your pantry, recieved personalized recommendations, generate a personalized shopping cart.</dd>
+                <dd class="inline">Add your ingredients to your pantry, like recipes. Add reviews and share your thoughts</dd>
                 
                 <div class="mt-6"> 
                   <RouterLink to="/signup" class="py-4 px-6 bg-pink-600 text-white rounded-lg">Create an Account Today</RouterLink>

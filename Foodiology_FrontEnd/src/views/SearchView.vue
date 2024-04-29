@@ -29,7 +29,9 @@
               <option>Breakfast</option>
               <option>Lunch</option>
               <option>Dinner</option>
-              <option>Snack</option>
+              <option>Appetizer</option>
+              <option>Dessert</option>
+              <option>Beverage</option>
             </select>
             <select v-model="filters.cuisineType" class="p-2 w-full md:w-1/4 bg-gray-100 rounded-lg">
               <option disabled value="">Select cuisine type</option>

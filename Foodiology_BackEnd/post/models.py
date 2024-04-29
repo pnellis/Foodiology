@@ -65,3 +65,14 @@ class Post(models.Model):
     
     def created_at_formatted(self):
        return self.created_at.strftime("%Y-%m-%d")
+    
+class UserLikedPost(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='liked_posts')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='liked_by_users')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'post')  # Prevents the same user from liking the same post multiple times
+
+    def __str__(self):
+        return f"{self.user.username} likes {self.post.title}"
