@@ -2,28 +2,36 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## Introduction
+FoodiologyRecipes.com is a web application to provide users with a community to share and search for recipes. To be able to like, post, and comment on recipes, and save ingredients to the pantry you must create an account. However, all users (with or without an account) are able to search for recipes based on ingredients they input directly into the search bar. 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Purpose
+Foodiologyrecipes.com is great for individuals who have a variety of ingredients, but don’t know what to cook using them. Our website provides a platform for people to input their ingredients, select a preferred cuisine type, time needed to prepare, servings yield, and meal type (breakfast, lunch, dinner, beverage, dessert). 
 
-## Customize configuration
+## Key Features
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+* **Search Recipes** search recipes based on ingredients you input, preferred cuisine type, time needed to prepare, servings yield, and meal type (breakfast, lunch, dinner, beverage, dessert)
+* **Create an Account** create an account (email verification needed)
 
-## Project Setup
 
-```sh
-npm install
-```
+## How to Run locally
 
-### Compile and Hot-Reload for Development
+To get started with our project on the local version, you must first create an environment to hold all relevant libraries and packages. To do this, open a terminal in the folder where you have cloned the repository type and the following:
+  Cd Foodiology_FrontEnd
+  npm install axios 
+  Python3 -m venv env
+  source env/bin/activate
+  pip3 install django 
+  pip3 install djangorestframework
+  pip3 install djangorestframework-simplejwt
+  pip3 install pillow
+  pip3 install django-cors-headers
+To run the backend:
+  cd Foodiology_BackEnd
+  python manage.py runserver 
+To run the front end:
+  cd Foodiology_FrontEnd
+  npm run dev
 
-```sh
-npm run dev
-```
 
-### Compile and Minify for Production
 
-```sh
-npm run build
-```
