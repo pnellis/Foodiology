@@ -26,7 +26,6 @@
           <h6 class="font-semibold">Ingredients you need:</h6>
           <ul>
             <li v-for="(ingredient, index) in ingredientsNeed" :key="index">{{ ingredient }}</li>
-            <!-- <li v-for="ingredient in filteredIngredients" :key="ingredient">{{ ingredient }}</li> -->
           </ul>
         </div>
       </div>
@@ -44,53 +43,45 @@
     props: {
       post: Object,
     },
-    // computed: {
-    //   filteredIngredients() {
-    //     // Split the ingredients string into an array
-    //     const ingredientsArray = this.post.ingredients.split(',');
-    //     // Trim each ingredient and filter based on whether it's included in the search query
-    //     return ingredientsArray.map(ingredient => ingredient.trim()).filter(ingredient => !this.isIngredientMatch(ingredient));
-    //   }
-    // },
-    // methods: {
-    //   isIngredientMatch(ingredient) {
-    //     // Check if the ingredient matches the search query
-    //     // You can modify this logic based on your search requirements
-    //     // For example, you can check if the ingredient includes the search query
-    //     return this.$parent.query && ingredient.toLowerCase().includes(this.$parent.query.toLowerCase());
-    //   }
-    // }
     computed: {
+      // ingredientsHave() {
+      //   const ingredientsArray = this.post.ingredients.split(',');
+      //   return ingredientsArray.map(ingredient => ingredient.trim()).filter(ingredient => this.isIngredientMatch(ingredient));
+      // },
       ingredientsHave() {
-        // Split the ingredients string into an array
+        const searchTerms = this.$parent.query.toLowerCase().split(',');
         const ingredientsArray = this.post.ingredients.split(',');
-        // Trim each ingredient and filter based on whether it's included in the search query
-        return ingredientsArray.map(ingredient => ingredient.trim()).filter(ingredient => this.isIngredientMatch(ingredient));
+        return ingredientsArray.map(ingredient => ingredient.trim()).filter(ingredient => this.isIngredientMatch(ingredient, searchTerms));
       },
+      // ingredientsNeed() {
+      //   const ingredientsArray = this.post.ingredients.split(',');
+      //   const trimmedIngredients = ingredientsArray.map(ingredient => ingredient.trim());
+      //   const filteredIngredients = trimmedIngredients.filter(ingredient => !this.isIngredientMatch(ingredient));
+      //   const ingredientCounts = filteredIngredients.reduce((acc, ingredient) => {
+      //     acc[ingredient] = (acc[ingredient] || 0) + 1;
+      //     return acc;
+      //   }, {});
+      //   const sortedIngredients = Object.keys(ingredientCounts).sort((a, b) => ingredientCounts[b] - ingredientCounts[a]);
+      //   return sortedIngredients.slice(0, 5);
+      // }
       ingredientsNeed() {
-        // Split the ingredients string into an array
+        const searchTerms = this.$parent.query.toLowerCase().split(',');
         const ingredientsArray = this.post.ingredients.split(',');
-        // Trim each ingredient
-        const trimmedIngredients = ingredientsArray.map(ingredient => ingredient.trim());
-        // Filter out the ingredients that are included in the search query
-        const filteredIngredients = trimmedIngredients.filter(ingredient => !this.isIngredientMatch(ingredient));
-        // Count the frequency of each ingredient
+        const filteredIngredients = ingredientsArray.map(ingredient => ingredient.trim()).filter(ingredient => !this.isIngredientMatch(ingredient, searchTerms));
         const ingredientCounts = filteredIngredients.reduce((acc, ingredient) => {
           acc[ingredient] = (acc[ingredient] || 0) + 1;
           return acc;
         }, {});
-        // Sort the ingredients based on their frequency in descending order
         const sortedIngredients = Object.keys(ingredientCounts).sort((a, b) => ingredientCounts[b] - ingredientCounts[a]);
-        // Get the top 5 ingredients
         return sortedIngredients.slice(0, 5);
-      }
+      },
     },
     methods: {
-      isIngredientMatch(ingredient) {
-        // Check if the ingredient matches the search query
-        // You can modify this logic based on your search requirements
-        // For example, you can check if the search query is included in the ingredient
-        return this.$parent.query && ingredient.toLowerCase().includes(this.$parent.query.toLowerCase());
+      // isIngredientMatch(ingredient) {
+      //   return this.$parent.query && ingredient.toLowerCase().includes(this.$parent.query.toLowerCase());
+      // }, 
+      isIngredientMatch(ingredient, searchTerms) {
+        return searchTerms.some(term => ingredient.toLowerCase().includes(term.trim()));
       }
     }
   };
