@@ -4,8 +4,10 @@ from post.models import Post
 from pantry.models import Ingredient
 from post.serializers import PostSerializer
 from django.db.models import Q
+from rest_framework.permissions import AllowAny
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def find(request):
     data = request.data
     query = data['query']

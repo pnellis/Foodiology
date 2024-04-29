@@ -63,16 +63,22 @@
 import axios from 'axios'
 import RecommendedRecipes from '../components/RecommendedRecipes.vue'
 import TrendingRecipes from '../components/TrendingRecipes.vue'
-import FeedItem from '../components/FeedItem.vue'
-import FeedItemCard from '@/components/FeedItemCard.vue';
+import FeedItemCard from '@/components/FeedItemCard.vue'
+import { useToastStore } from '@/stores/toast'
 
 export default {
   name: 'SearchView',
   components: {
     RecommendedRecipes,
     TrendingRecipes,
-    // FeedItem,
     FeedItemCard
+  },
+  setup() {
+      const toastStore = useToastStore()
+
+      return {
+          toastStore
+      }
   },
   data() {
     return {
@@ -117,7 +123,11 @@ export default {
       })
         .then(response => {
           console.log('response:', response.data);
-          this.posts = response.data.posts;
+          if (response.data.posts.length === 0) {
+            this.toastStore.showToast(5000, 'No matching recipes based on inputted ingredient(s)', 'bg-red-300');
+          } else {
+            this.posts = response.data.posts;
+          }
         })
         .catch(error => {
           console.log('error:', error);

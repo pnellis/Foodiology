@@ -1,6 +1,6 @@
 <template>
     <div class="p-4 bg-white border border-gray-200 rounded-lg">
-        <h3 class="mb-6 text-xl">Recommended Recipe</h3>
+        <h3 class="mb-6 text-xl">Recipe of the Day</h3>
 
         <div v-if="randomRecipe">
             <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-xl h-52">

@@ -13,6 +13,7 @@ from rest_framework import status
 from django.core.cache import cache
 from datetime import timedelta
 from random import choice
+from rest_framework.permissions import AllowAny
 
 @api_view(['GET'])
 def post_list(request):
@@ -28,6 +29,7 @@ def post_list(request):
     return JsonResponse(serializer.data, safe=False)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
 
@@ -149,12 +151,13 @@ def post_report(request, pk):
     return JsonResponse({'message': 'post reported'})
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def random_recipe(request):
     cached_recipe = cache.get('random_recipe')
     if cached_recipe:
         return JsonResponse(cached_recipe)
 
-    random_post = Post.objects.filter().order_by('?').first()
+    random_post = Post.objects.filter(created_by_id='c33920bb2da146fb94b58f987a94a91d').order_by('?').first()
     if random_post:
         serializer = PostSerializer(random_post)
         cache.set('random_recipe', serializer.data, timeout=timedelta(days=1).seconds)
