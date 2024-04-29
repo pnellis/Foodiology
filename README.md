@@ -16,7 +16,7 @@ Foodiologyrecipes.com is great for individuals who have a variety of ingredients
 * **Edit Profile:** Users with accounts can change their name, change their email, and update their passowrd.
 * **Comment on Posts:** Users with accounts and are logged in can comment on recipe posts.
 * **Add Friends:** Users can go to "Find Friends" and search for other users to view their recipes and add them as friends.
-* **Pantry:** Users with accounts can save ingredients to their pantry. After a user has saved 
+* **Pantry:** Users with accounts can save ingredients to their pantry. After a user has saved their ingredients, they can go to "Search" and directly press search to find recipes using the ingredients in their pantry. 
 
 
 ## How to Run locally
