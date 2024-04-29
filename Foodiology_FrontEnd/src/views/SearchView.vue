@@ -63,7 +63,9 @@
     </div>
 
     <div class="main-right col-span-1 space-y-4">
-      <RecommendedRecipes />
+      <template v-if="userStore.user.isAuthenticated">
+        <RecommendedRecipes />
+      </template>
       <TrendingRecipes />
     </div>
 
@@ -75,6 +77,7 @@ import axios from 'axios'
 import RecommendedRecipes from '../components/RecommendedRecipes.vue'
 import TrendingRecipes from '../components/TrendingRecipes.vue'
 import FeedItemCard from '@/components/FeedItemCard.vue'
+import { useUserStore } from '@/stores/user' // Import useUserStore
 import { useToastStore } from '@/stores/toast'
 
 export default {
@@ -85,11 +88,12 @@ export default {
     FeedItemCard
   },
   setup() {
-      const toastStore = useToastStore()
-
-      return {
-          toastStore
-      }
+    const toastStore = useToastStore()
+    const userStore = useUserStore() // Initialize userStore
+    return {
+      toastStore,
+      userStore
+    }
   },
   data() {
     return {
