@@ -109,7 +109,7 @@ export default {
                 })
                 .catch(error => {
                     console.log('error', error)
-                    this.toastStore.showToast(5000, 'You must be logged in to comment', 'bg-red-500')
+                    this.toastStore.showToast(5000, 'You must be logged in to comment', 'bg-red-300')
                 })
         } 
     }

@@ -15,7 +15,7 @@
       </div>
       <div class="p-6">
         <h5 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-          {{ post.title }}
+        {{ post.title }}
         </h5>
         <div class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
           <h6 class="font-semibold">Ingredients you need:</h6>

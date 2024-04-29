@@ -157,7 +157,7 @@ def random_recipe(request):
     if cached_recipe:
         return JsonResponse(cached_recipe)
 
-    random_post = Post.objects.filter(created_by_id='c33920bb2da146fb94b58f987a94a91d').order_by('?').first()
+    random_post = Post.objects.filter(created_by_id='c33920bb2da146fb94b58f987a94a91d').first()
     if random_post:
         serializer = PostSerializer(random_post)
         cache.set('random_recipe', serializer.data, timeout=timedelta(days=1).seconds)
