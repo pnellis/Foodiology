@@ -34,4 +34,4 @@ To run the front end:
   * cd Foodiology_FrontEnd
   * npm run dev
 
-### See further documentation in the Foodiology wiki!
+### See further documentation in the /doc subdirectory!
