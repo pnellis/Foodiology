@@ -40,7 +40,7 @@ def find(request):
 
     # Build the base query using Q objects for each ingredient
     base_query = Q()
-    for ingredient in expanded_ingredients:
+    for ingredient in all_ingredients:
         base_query |= Q(ingredients__iregex=r'\b{}\b(s)?'.format(ingredient))  # Matches ingredient as a whole word, optionally followed by 's'
        
 
