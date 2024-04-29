@@ -5,6 +5,15 @@ from pantry.models import Ingredient
 from post.serializers import PostSerializer
 from django.db.models import Q
 from rest_framework.permissions import AllowAny
+from nltk.corpus import wordnet as wn
+
+def get_synonyms(word):
+    """Fetch synonyms for a word using NLTK WordNet."""
+    synonyms = set()
+    for synset in wn.synsets(word):
+        for lemma in synset.lemmas():
+            synonyms.add(lemma.name().replace('_', ' '))
+    return synonyms
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -25,9 +34,13 @@ def find(request):
     # Combine ingredients from user input and pantry if available
     all_ingredients = set(user_input_ingredients + pantry_ingredients_list)
 
+    expanded_ingredients = set()
+    for ingredient in all_ingredients:
+        expanded_ingredients.update(get_synonyms(ingredient))
+
     # Build the base query using Q objects for each ingredient
     base_query = Q()
-    for ingredient in all_ingredients:
+    for ingredient in expanded_ingredients:
         base_query |= Q(ingredients__iregex=r'\b{}\b(s)?'.format(ingredient))  # Matches ingredient as a whole word, optionally followed by 's'
        
 
