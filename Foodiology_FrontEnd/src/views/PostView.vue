@@ -43,6 +43,8 @@ import RecommendedRecipes from '../components/RecommendedRecipes.vue'
 import TrendingRecipes from '../components/TrendingRecipes.vue'
 import FeedItem from '../components/FeedItem.vue'
 import CommentItem from '../components/CommentItem.vue'
+import { useToastStore } from '@/stores/toast'
+import { useUserStore } from '@/stores/user'
 
 export default {
     name: 'PostView',
@@ -51,6 +53,16 @@ export default {
         TrendingRecipes,
         FeedItem,
         CommentItem
+    },
+
+    setup() {
+        const userStore = useUserStore()
+        const toastStore = useToastStore()
+
+        return {
+            userStore,
+            toastStore
+        }
     },
 
     data() {
@@ -97,6 +109,7 @@ export default {
                 })
                 .catch(error => {
                     console.log('error', error)
+                    this.toastStore.showToast(5000, 'You must be logged in to comment', 'bg-emerald-500')
                 })
         } 
     }
