@@ -128,6 +128,7 @@ export default {
     computed: {
         canSubmit() {
             return this.title.trim() && this.ingredients.trim() && this.instructions.trim();
+        }
     },
 
     methods: {
