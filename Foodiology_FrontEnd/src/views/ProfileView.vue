@@ -36,13 +36,15 @@
         <div class="main-center col-span-2 space-y-4">
 
             <div class="p-4 bg-white border border-gray-200 rounded-lg" v-for="post in posts" v-bind:key="post.id">
-                <FeedItem v-bind:post="post" v-on:deletePost="deletePost"/>
+                <FeedItem v-bind:post="post" v-on:deletePost="deletePost" />
             </div>
 
         </div>
 
         <div class="main-right col-span-2 space-y-4">
-            <PantryComponent />
+            <template v-if="userStore.user.id == user.id">
+                <PantryComponent />
+            </template>
             <RecommendedRecipes />
             <TrendingRecipes />
         </div>
