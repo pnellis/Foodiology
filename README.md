@@ -10,28 +10,33 @@ Foodiologyrecipes.com is great for individuals who have a variety of ingredients
 
 ## Key Features
 
-* **Search Recipes** search recipes based on ingredients you input, preferred cuisine type, time needed to prepare, servings yield, and meal type (breakfast, lunch, dinner, beverage, dessert)
-* **Create an Account** create an account (email verification needed)
+* **Search Recipes:** Search recipes based on ingredients you input, preferred cuisine type, time needed to prepare, servings yield, and meal type (breakfast, lunch, dinner, beverage, dessert).
+* **Random Recipe of the Day:** A random recipe of the day will be shown from the databse.
+* **Create an Account:** Create an account (email verification needed).
+* **Edit Profile:** Users with accounts can change their name, change their email, and update their passowrd.
+* **Comment on Posts:** Users with accounts and are logged in can comment on recipe posts.
+* **Add Friends:** Users can go to "Find Friends" and search for other users to view their recipes and add them as friends.
+* **Pantry:** Users with accounts can save ingredients to their pantry. After a user has saved 
 
 
 ## How to Run locally
 
 To get started with our project on the local version, you must first create an environment to hold all relevant libraries and packages. To do this, open a terminal in the folder where you have cloned the repository type and the following:
-  Cd Foodiology_FrontEnd
-  npm install axios 
-  Python3 -m venv env
-  source env/bin/activate
-  pip3 install django 
-  pip3 install djangorestframework
-  pip3 install djangorestframework-simplejwt
-  pip3 install pillow
-  pip3 install django-cors-headers
+  * Cd Foodiology_FrontEnd
+  * npm install axios 
+  * Python3 -m venv env
+  * source env/bin/activate
+  * pip3 install django 
+  * pip3 install djangorestframework
+  * pip3 install djangorestframework-simplejwt
+  * pip3 install pillow
+  * pip3 install django-cors-headers
 To run the backend:
-  cd Foodiology_BackEnd
-  python manage.py runserver 
+  * cd Foodiology_BackEnd
+  * python manage.py runserver 
 To run the front end:
-  cd Foodiology_FrontEnd
-  npm run dev
+  * cd Foodiology_FrontEnd
+  * npm run dev
 
 
 
