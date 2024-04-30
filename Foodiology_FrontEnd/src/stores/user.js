@@ -88,7 +88,7 @@ export const useUserStore = defineStore({
         },
 
         refreshToken() {
-            axios.post('http://127.0.0.1:8000/auth/token/refresh/', {
+            axios.post('https://foodiologyrecipes.com/auth/token/refresh/', {
                 refresh: this.user.refresh
             })
                 .then((response) => {
@@ -100,7 +100,6 @@ export const useUserStore = defineStore({
                 })
                 .catch((error)=>{
                     console.log(error)
-
                     this.removeToken()
                 })
         },
