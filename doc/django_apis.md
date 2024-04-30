@@ -28,6 +28,8 @@ Post allows users to create their own recipes, as well as comment on and like ot
 6. **post_create_comment**: Allows a user to post a comment on a recipe.
 7. **post_delete**: Delete's a user's post.
 8: **post_report**: Allows a user to report another user's post (posts that may contain offensive content).
+9: **random_recipe**: Generates a random recipe from our database, used for recipe of the day.
+10: **liked_posts**: returns a users liked posts.
 
 ## Search
 
