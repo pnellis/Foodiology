@@ -7,6 +7,10 @@ Watch this video to learn more about the Foodiology project.
 
 https://youtu.be/euVa12PUUjI?si=FBg18S_vWb4In3o0
 
+## Link to Website
+### Please only use safari to access our project! 
+https://foodiologyrecipes.com
+
 ## Introduction
 FoodiologyRecipes.com is a web application to provide users with a community to share and search for recipes. To be able to like, post, and comment on recipes, and save ingredients to the pantry you must create an account. However, all users (with or without an account) are able to search for recipes based on ingredients they input directly into the search bar. 
 
