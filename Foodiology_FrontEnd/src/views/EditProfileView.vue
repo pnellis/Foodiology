@@ -32,12 +32,12 @@
             <input type="file" ref="file">
           </div> -->
 
-          <div>
+          <!-- <div>
             <label class="text-lg font-semibold">Avatar</label><br>
             <input type="file" ref="file" style="display: none">
             <button type="button" @click="$refs.file.click()" style="border: 1px solid #ccc; padding: 5px 10px;">Choose
               Image</button>
-          </div>
+          </div> -->
 
           <template v-if="errors.length > 0">
             <div class="bg-red-300 text-white rounded-lg p-4">
@@ -94,7 +94,7 @@ export default {
 
       if (this.errors.length === 0) {
         let formData = new FormData()
-        formData.append('avatar', this.$refs.file.files[0])
+        // formData.append('avatar', this.$refs.file.files[0])
         formData.append('name', this.form.name)
         formData.append('email', this.form.email)
 

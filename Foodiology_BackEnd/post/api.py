@@ -1,183 +1,20 @@
-# from django.http import JsonResponse
-
-# from rest_framework.decorators import api_view, authentication_classes, permission_classes
-
-# from account.models import User, FriendshipRequest
-# from account.serializers import UserSerializer
-
-# from .forms import PostForm, AttachmentForm
-# from .models import Post, Like, Comment, Ingredients, Recipe_Ingredients
-# from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer, IngredientsSerializer
-
-
-# @api_view(['GET'])
-# def post_list(request):
-#     user_ids = [request.user.id]
-
-#     for user in request.user.friends.all():
-#         user_ids.append(user.id)
-
-#     posts = Post.objects.filter(created_by_id__in=list(user_ids))
-
-#     serializer = PostSerializer(posts, many=True)
-
-#     return JsonResponse(serializer.data, safe=False)
-
-# @api_view(['GET'])
-# def post_detail(request, pk):
-#     post = Post.objects.get(pk=pk)
-
-#     return JsonResponse ({
-#         'post': PostDetailSerializer(post).data
-#     })
-
-# @api_view(['GET'])
-# def post_list_profile(request, id):
-#     user = User.objects.get(pk=id)
-#     posts = Post.objects.filter(created_by_id=id)
-#     posts_serializer = PostSerializer(posts, many=True)
-#     user_serializer = UserSerializer(user)
-
-#     can_send_friendship_request = True
-
-#     if request.user in user.friends.all():
-#         can_send_friendship_request = False
-    
-#     check1 = FriendshipRequest.objects.filter(created_for=request.user).filter(created_by=user)
-#     check2 = FriendshipRequest.objects.filter(created_for=user).filter(created_by=request.user)
-
-#     if check1 or check2: 
-#         can_send_friendship_request = False
-
-#     return JsonResponse({
-#         'posts': posts_serializer.data,
-#         'user': user_serializer.data,
-#         'can_send_friendship_request': can_send_friendship_request
-#     }, safe=False)
-
-# @api_view(['POST'])
-# def post_create(request):
-#     post_data = request.data.copy()
-#     ingredients_data = post_data.pop('ingredients', None)
-
-#     form = PostForm(post_data)
-
-#     if form.is_valid():
-#         post = form.save(commit=False)
-#         post.created_by = request.user
-#         post.save()
-
-#         user = request.user
-#         user.posts_count = user.posts_count + 1
-#         user.save()
-
-#         if ingredients_data:
-#             for ingredient_name in ingredients_data:
-#                 ingredient, created = Ingredients.objects.get_or_create(name=ingredient_name)
-#                 recipe_ingredient = Recipe_Ingredients.objects.create(recipe=post, ingredient=ingredient)
-
-#         serializer = PostSerializer(post)
-
-#         return JsonResponse(serializer.data, safe=False)
-#     else:
-#         return JsonResponse({'error': form.errors}, status=400)
-
-# @api_view(['POST'])
-# def post_like(request, pk):
-#     post = Post.objects.get(pk=pk)
-    
-#     if not post.likes.filter(created_by=request.user):
-#         like = Like.objects.create(created_by=request.user)
-
-#         post = Post.objects.get(pk=pk)
-#         post.likes_count = post.likes_count + 1
-#         post.likes.add(like)
-#         post.save()
-
-#         return JsonResponse({'message': 'liked_created'})
-#     else: 
-#         return JsonResponse({'message': 'post already liked'})
-
-# @api_view(['POST'])
-# def post_create_comment(request, pk):
-#     comment = Comment.objects.create(body=request.data.get('body'), created_by=request.user)
-
-#     post = Post.objects.get(pk=pk)
-#     post.comments.add(comment)
-#     post.comments_count = post.comments_count + 1
-#     post.save()
-
-#     serializer = CommentSerializer(comment)
-
-#     return JsonResponse(serializer.data, safe=False)
-    
-# from django.http import JsonResponse
-
-# from rest_framework.decorators import api_view, authentication_classes, permission_classes
-
-# from account.models import User
-# from account.serializers import UserSerializer
-
-# from .forms import PostForm
-# from .models import Post, Like
-# from .serializers import PostSerializer
-
-
-# @api_view(['GET'])
-# def post_list(request):
-#     user_ids = [request.user.id]
-
-#     for user in request.user.friends.all():
-#         user_ids.append(user.id)
-
-#     posts = Post.objects.filter(created_by_id__in=list(user_ids))
-#     serializer = PostSerializer(posts, many=True)
-
-#     return JsonResponse(serializer.data, safe=False)
-
-
-# @api_view(['GET'])
-# def post_list_profile(request, id):
-#     user = User.objects.get(pk=id)
-#     posts = Post.objects.filter(created_by_id=id)
-
-#     posts_serializer = PostSerializer(posts, many=True)
-#     user_serializer = UserSerializer(user)
-
-#     return JsonResponse({
-#         'posts': posts_serializer.data,
-#         'user': user_serializer.data
-#     }, safe=False)
-
-
-# @api_view(['POST'])
-# def post_create(request):
-#     form = PostForm(request.data)
-
-#     if form.is_valid():
-#         post = form.save(commit=False)
-#         post.created_by = request.user
-#         post.save()
-
-#         serializer = PostSerializer(post)
-
-#         return JsonResponse(serializer.data, safe=False)
-#     else:
-#         return JsonResponse({'error': 'add somehting here later!...'})
-    
-
 from django.http import JsonResponse
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 from account.models import User, FriendshipRequest
 from account.serializers import UserSerializer
 
 from .forms import PostForm, AttachmentForm
-from .models import Post, Like, Comment
+from .models import Post, Like, Comment, UserLikedPost
 from .serializers import PostSerializer, PostDetailSerializer, CommentSerializer
 
 from rest_framework import status
+from django.core.cache import cache
+from datetime import timedelta
+from random import choice
+from rest_framework.permissions import AllowAny
 
 @api_view(['GET'])
 def post_list(request):
@@ -193,6 +30,7 @@ def post_list(request):
     return JsonResponse(serializer.data, safe=False)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def post_detail(request, pk):
     post = Post.objects.get(pk=pk)
 
@@ -257,20 +95,21 @@ def post_create(request):
     
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def post_like(request, pk):
-    post = Post.objects.get(pk=pk)
-    
-    if not post.likes.filter(created_by=request.user):
-        like = Like.objects.create(created_by=request.user)
-
+    try:
         post = Post.objects.get(pk=pk)
-        post.likes_count = post.likes_count + 1
-        post.likes.add(like)
-        post.save()
+        # Attempt to create a new like entry
+        user_like, created = UserLikedPost.objects.get_or_create(user=request.user, post=post)
+        if created:
+            post.likes_count += 1
+            post.save()
+            return JsonResponse({'message': 'Like created'}, status=201)
+        else:
+            return JsonResponse({'message': 'Post already liked'}, status=400)
+    except Post.DoesNotExist:
+        return JsonResponse({'error': 'Post not found'}, status=404)
 
-        return JsonResponse({'message': 'liked_created'})
-    else: 
-        return JsonResponse({'message': 'post already liked'})
 
 @api_view(['POST'])
 def post_create_comment(request, pk):
@@ -314,3 +153,25 @@ def post_report(request, pk):
     post.save()
 
     return JsonResponse({'message': 'post reported'})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def random_recipe(request):
+    cached_recipe = cache.get('random_recipe')
+    if cached_recipe:
+        return JsonResponse(cached_recipe)
+
+    random_post = Post.objects.filter(created_by_id='c33920bb2da146fb94b58f987a94a91d').first()
+    if random_post:
+        serializer = PostSerializer(random_post)
+        cache.set('random_recipe', serializer.data, timeout=timedelta(days=1).seconds)
+        return JsonResponse(serializer.data)
+    else:
+        return JsonResponse({'error': 'No recipe posts available'}, status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def liked_posts(request):
+    user_liked_posts = UserLikedPost.objects.filter(user=request.user).select_related('post')
+    serializer = PostSerializer([ulp.post for ulp in user_liked_posts], many=True)
+    return JsonResponse(serializer.data, safe=False)

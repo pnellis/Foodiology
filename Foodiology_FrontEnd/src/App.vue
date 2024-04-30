@@ -64,7 +64,7 @@
       <div class="menu-right flex-shrink-0">
         <template v-if="userStore.user.isAuthenticated">
           <RouterLink :to="{ name: 'profile', params: { 'id': userStore.user.id } }">
-            <img :src="userStore.user.avatar || '/assets/logocat.png'" class="w-12 rounded-full" alt="User Avatar">
+            <img :src="avatarSrc" class="w-12 rounded-full" alt="User Avatar">
           </RouterLink>
         </template>
 
@@ -110,9 +110,9 @@ export default {
   },
 
 
-  mounted() {
-    this.getFeed()
-  },
+  // mounted() {
+  //   this.getFeed()
+  // },
 
   data() {
     return {
@@ -127,10 +127,11 @@ export default {
 
   watch: {
     '$route.params.id': {
-      handler: function () {
-        this.getFeed()
+      handler: function (newId) {
+        if (newId != null) {
+          this.getFeed()
+        }
       },
-      deep: true,
       immediate: true
     }
   },
@@ -219,6 +220,9 @@ export default {
         return ' '; // Apply no style
       }
       return 'px-8 py-6 bg-gray-100'; // Default style
+    },
+    avatarSrc() {
+      return this.userStore.user.avatar !== 'null' ? this.userStore.user.avatar : '/assets/logocat.png';
     }
   }
 }

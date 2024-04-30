@@ -11,15 +11,10 @@ def activateemail(request):
     user_id = request.GET.get('id','')
 
     if email and user_id:
-        try:
-            #user = get_object_or_404(User, id=user_id, email=email)
-            user = User.objects.get(id=user_id, email=email)
-            user.is_active = True
-            user.save()
-            return HttpResponse('Your account is now activated. Please go to Foodiology.com to login.')
-        except Exception as e:
-            return HttpBadReqeust('Your account is NOT activated. Please go to Foodiology.com to login.')
-        
+        user = User.objects.get(id=user_id, email=email)
+        user.is_active = True
+        user.save()
+        return HttpResponse('Your account is now activated. Please go to Foodiology.com to login.')
     else:
         return HttpResponse('The parateters are not valid.')
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="grid grid-cols-6 gap-3">
+  <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
 
-    <div class="search-left col-span-4">
+    <div class="main-left col-span-3 space-y-4">
 
       <!-- <div class="bg-white border border-gray-200 rounded-lg">
         <form v-on:submit.prevent="submitForm" class="p-4 flex space-x-4">
@@ -43,7 +43,9 @@
               <option>Breakfast</option>
               <option>Lunch</option>
               <option>Dinner</option>
-              <option>Snack</option>
+              <option>Appetizer</option>
+              <option>Dessert</option>
+              <option>Beverage</option>
             </select>
             <select v-model="filters.cuisineType" class="p-2 w-full md:w-1/4 bg-gray-100 rounded-lg">
               <option disabled value="">Select cuisine type</option>
@@ -51,6 +53,15 @@
               <option>Mexican</option>
               <option>Chinese</option>
               <option>Indian</option>
+              <option>American</option>
+              <option>Middle Eastern</option>
+              <option>Japanese</option>
+              <option>Greek</option>
+              <option>German</option>
+              <option>Filipino</option>
+              <option>Southern</option>
+              <option>French</option>
+              <option>Asian</option>
             </select>
             <input v-model="filters.nutrients" type="text" class="p-2 w-full md:w-1/4 bg-gray-100 rounded-lg"
               placeholder="Nutrients (e.g., high protein)">
@@ -65,8 +76,10 @@
       </div>
     </div>
 
-    <div class="recommendations-right col-span-2">
-      <RecommendedRecipes />
+    <div class="main-right col-span-1 space-y-4">
+      <template v-if="userStore.user.isAuthenticated">
+        <RecommendedRecipes />
+      </template>
       <TrendingRecipes />
     </div>
 
@@ -77,16 +90,24 @@
 import axios from 'axios'
 import RecommendedRecipes from '../components/RecommendedRecipes.vue'
 import TrendingRecipes from '../components/TrendingRecipes.vue'
-import FeedItem from '../components/FeedItem.vue'
-import FeedItemCard from '@/components/FeedItemCard.vue';
+import FeedItemCard from '@/components/FeedItemCard.vue'
+import { useUserStore } from '@/stores/user'
+import { useToastStore } from '@/stores/toast'
 
 export default {
   name: 'SearchView',
   components: {
     RecommendedRecipes,
     TrendingRecipes,
-    // FeedItem,
     FeedItemCard
+  },
+  setup() {
+    const toastStore = useToastStore()
+    const userStore = useUserStore() // Initialize userStore
+    return {
+      toastStore,
+      userStore
+    }
   },
   data() {
     return {
@@ -150,7 +171,11 @@ export default {
       })
         .then(response => {
           console.log('response:', response.data);
-          this.posts = response.data.posts;
+          if (response.data.posts.length === 0) {
+            this.toastStore.showToast(5000, 'No matching recipes based on your input ingredient(s) and preferences', 'bg-red-300');
+          } else {
+            this.posts = response.data.posts;
+          }
         })
         .catch(error => {
           console.log('error:', error);

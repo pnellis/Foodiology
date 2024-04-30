@@ -41,13 +41,12 @@ def signup(request):
 
         send_mail(
             "Please verify your email",
-            f"The url for ACTIVATING YOUR account is: {url}",
+            f"The url for activating your account is: {url}",
             "noreply@foodiologyrecipes.com",
             [data.get('email')],
             fail_silently=False,
         )
 
-        # Send verification email later!
     else:
         message = form.errors.as_json()
 

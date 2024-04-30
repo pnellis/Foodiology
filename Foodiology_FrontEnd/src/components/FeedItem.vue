@@ -1,7 +1,7 @@
 <template>
     <div class="mb-6 flex items-center justify-between">
         <div class="flex items-center space-x-6">
-            <img :src="post.created_by.get_avatar || '/dist/assets/logocat.png'" class="w-[40px] rounded-full">
+            <img :src="post.created_by.get_avatar || '/assets/logocat.png'" class="w-[40px] rounded-full">
             <p>
                 <strong>
                     <RouterLink :to="{ name: 'profile', params: { 'id': post.created_by.id } }">{{ post.created_by.name }}
@@ -177,6 +177,7 @@ export default {
                 })
                 .catch(error => {
                     console.log('error', error)
+                    this.toastStore.showToast(5000, 'You must be logged in to like this post', 'bg-red-300')
                 })
         },
         deletePost() {

@@ -67,13 +67,13 @@
                         <img :src="url" class="w-[100px] mt-3 rounded-xl" />
                     </div>
 
-                    <div class="p-4 border-t border-gray-100 flex justify-between">
-                        <label class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">
+                    <div class="p-4 border-t border-gray-100 flex justify-end">
+                        <!-- <label class="inline-block py-4 px-6 bg-gray-600 text-white rounded-lg">
                             <input type="file" ref="file" @change="onFileChange">
                             Attach image
-                        </label>
+                        </label> -->
 
-                        <button class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg">Post</button>
+                        <button class="inline-block py-4 px-6 bg-pink-600 text-white rounded-lg self-center">Post</button>
                     </div>
                 </form>
             </div>
@@ -167,7 +167,7 @@ export default {
             formData.append('meal_type', this.meal_type)
             formData.append('cuisine_type', this.cuisine_type)
             formData.append('nutirents', this.nutirents)
-            formData.append('image', this.$refs.file.files[0])
+            // formData.append('image', this.$refs.file.files[0])
 
             axios
                 .post('/api/posts/create/', formData, {
@@ -188,7 +188,7 @@ export default {
                     this.cuisine_type = ''
                     this.nutirents = ''
                     this.showAdditionalFields = false
-                    this.$refs.file.value = null
+                    // this.$refs.file.value = null
                     this.url = null
                     // this.image = null
                 })

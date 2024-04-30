@@ -9,7 +9,7 @@
                 <div class="flex justify-center items-center mt-6" v-if="user.id">
                     <RouterLink :to="{ name: 'friends', params: { id: user.id } }" class="text-xs text-gray-500 block">{{
                         user.friends_count }} friends</RouterLink>
-                    <p class="text-xs text-gray-500 block"> {{ user.posts_count }} RECIPES</p>
+                    <p class="text-xs text-gray-500 block"> {{ user.posts_count }} recipes</p>
                 </div>
 
                 <div class="mt-6">
@@ -20,7 +20,7 @@
 
                     <RouterLink class="inline-block mr-2 py-4 px-3 bg-pink-600 text-xs text-white rounded-lg"
                         to="/profile/edit" v-if="userStore.user.id == user.id">
-                        Edit Profile adfkalsjdfklasjdf
+                        Edit Profile
                     </RouterLink>
 
                     <button class="inline-block py-4 px-6 bg-red-600 text-xs text-white rounded-lg" @click="logout"
@@ -42,7 +42,9 @@
         </div>
 
         <div class="main-right col-span-2 space-y-4">
-            <PantryComponent />
+            <template v-if="userStore.user.id == user.id">
+                <PantryComponent />
+            </template>            
             <RecommendedRecipes />
             <TrendingRecipes />
         </div>

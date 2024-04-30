@@ -16,7 +16,7 @@
         <div class="column">
           <div class="card">
             <div class="img-container">
-              <img src="/dist/assets/page.jpg" alt="page" />
+              <img src="/public/assets/page.jpg" alt="page" />
             </div>
             <h3>Page Nellis</h3>
             <p>B.S. Quantitative Sciences and Informatics</p>
@@ -38,7 +38,7 @@
         <div class="column">
           <div class="card">
             <div class="img-container">
-              <img src="/dist/assets/cristina.jpg" alt="cristina" />
+              <img src="/public/assets/cristina.jpg" alt="cristina" />
             </div>
             <h3>Cristina Ramirez Vinaja</h3>
             <p>B.S. Computer Science</p>
@@ -60,7 +60,7 @@
         <div class="column">
           <div class="card">
             <div class="img-container">
-              <img src="/dist/assets/carol.jpeg" alt="carol" />
+              <img src="/public/assets/carol.jpeg" alt="carol" />
             </div>
             <h3>Carol (Zijing) Zhou</h3>
             <p>B.S. Biology and Quantitative Science (Informatics) </p>
@@ -81,7 +81,7 @@
         <div class="column">
           <div class="card">
             <div class="img-container">
-              <img src="/dist/assets/audrey.jpg" alt="audrey" />
+              <img src="/public/assets/audrey.jpg" alt="audrey" />
             </div>
             <h3>Audrey Poon</h3>
             <p>B.S. Math & Computer Science</p>
@@ -103,7 +103,7 @@
         <div class="column">
           <div class="card">
             <div class="img-container">
-              <img src="/dist/assets/Katie.jpg" alt="katie" />
+              <img src="/public/assets/Katie.jpg" alt="katie" />
             </div>
             <h3>Katie (Mingchen) Shao</h3>
             <p>B.S. Applied Math & Statistics and Computer Science</p>
