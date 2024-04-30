@@ -9,6 +9,8 @@ https://youtu.be/euVa12PUUjI?si=FBg18S_vWb4In3o0
 
 ## Link to Website
 ### Please only use safari to access our project! 
+This application is not optimized for mobile use. 
+
 https://foodiologyrecipes.com
 
 ## Introduction
