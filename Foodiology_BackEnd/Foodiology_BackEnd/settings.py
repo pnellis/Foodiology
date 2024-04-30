@@ -120,7 +120,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "foodiology_final",
         'USER': "admin",
-        'PASSWORD': "Foodiology123",
+        'PASSWORD': config.pw,
         'HOST': "foodiology.cxwwgy2c4rn6.us-east-1.rds.amazonaws.com",
         'PORT': "3306",
     }
