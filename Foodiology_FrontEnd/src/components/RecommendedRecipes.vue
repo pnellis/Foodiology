@@ -5,7 +5,7 @@
       <div v-else class="space-y-4">
         <div v-for="recipe in recipes" :key="recipe.id" class="flex items-center justify-between">
           <div class="flex items-center space-x-2">
-            <img :src="recipe.image_url || 'public/assets/logocat.png'" class="w-[40px] rounded-full">
+            <img :src="recipe.image_url || '/public/assets/logocat.png'" class="w-[40px] rounded-full">
             <p class="text-xs"><strong>{{ recipe.title }}</strong></p>
           </div>
           <!-- <a :href="`/recipes/${recipe.id}`" class="py-2 px-3 bg-pink-600 text-white text-xs rounded-lg">Show</a> -->
