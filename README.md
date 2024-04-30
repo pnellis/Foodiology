@@ -1,7 +1,5 @@
-# Foodiology_Test
-![Homepage]<img width="1453" alt="homepage" src="https://github.com/pnellis/Foodiology/assets/110642766/53c122f8-2d79-4b4d-99b3-72fcaeaaeda6">
-
-This template should help get you started developing with Vue 3 in Vite.
+# Foodiology
+<img width="1453" alt="homepage" src="https://github.com/pnellis/Foodiology/assets/110642766/53c122f8-2d79-4b4d-99b3-72fcaeaaeda6">
 
 ## Introduction
 FoodiologyRecipes.com is a web application to provide users with a community to share and search for recipes. To be able to like, post, and comment on recipes, and save ingredients to the pantry you must create an account. However, all users (with or without an account) are able to search for recipes based on ingredients they input directly into the search bar. 
