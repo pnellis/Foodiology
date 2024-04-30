@@ -1,3 +1,2 @@
 Foodiology_BackEnd/config.py
-/logs/nginx-vue-access.log
-/logs/nginx-vue-error.log
+/logs/
