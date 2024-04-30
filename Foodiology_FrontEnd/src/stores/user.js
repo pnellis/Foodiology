@@ -17,23 +17,25 @@ export const useUserStore = defineStore({
     }),
 
     actions: {
-        async initStore() {
+        initStore() {
             console.log('initStore');
 
-            if (localStorage.getItem('user.refresh')) {
-                console.log('Attempting to restore session');
+            if (localStorage.getItem('user.access')) {
 
-                await this.refreshToken(); // Validate refresh token and update access token
+                console.log('User has access');
 
-                this.user.id = localStorage.getItem('user.id');
-                this.user.name = localStorage.getItem('user.name');
-                this.user.email = localStorage.getItem('user.email');
-                this.user.avatar = localStorage.getItem('user.avatar');
-                this.user.isAuthenticated = true;
+                this.user.access = localStorage.getItem('user.access')
+                this.user.refresh = localStorage.getItem('user.refresh')
 
-                console.log('Session restored:', this.user);
-            } else {
-                console.log('No session to restore');
+                this.user.id = localStorage.getItem('user.id')
+                this.user.name = localStorage.getItem('user.name')
+                this.user.email = localStorage.getItem('user.email')
+                this.user.avatar = localStorage.getItem('user.avatar')
+                this.user.isAuthenticated = true
+
+                this.refreshToken()
+
+               console.log('Initialized user:', this.user)
             }
         },
 
@@ -56,9 +58,9 @@ export const useUserStore = defineStore({
             this.user.refresh = null
             this.user.access = null
             this.user.isAuthenticated = false
-            this.user.id = false
-            this.user.name = false
-            this.user.email = false
+            this.user.id = null
+            this.user.name = null
+            this.user.email = null
             this.user.avatar = null
 
             localStorage.setItem('user.access', '')
@@ -86,7 +88,7 @@ export const useUserStore = defineStore({
         },
 
         refreshToken() {
-            axios.post('/api/account/refresh/', {
+            axios.post('http://127.0.0.1:8000/auth/token/refresh/', {
                 refresh: this.user.refresh
             })
                 .then((response) => {

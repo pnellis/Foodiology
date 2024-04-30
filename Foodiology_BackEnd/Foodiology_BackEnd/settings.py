@@ -161,4 +161,4 @@ CACHES = {
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_SECURE = True  # Ensures cookies are only sent over HTTPS
-SESSION_COOKIE_HTTPONLY = True  # Prevents client-side JavaScript from accessing cookies
+SESSION_COOKIE_HTTPONLY = False  # Prevents client-side JavaScript from accessing cookies
