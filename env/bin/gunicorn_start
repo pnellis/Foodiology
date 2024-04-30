@@ -1,0 +1,29 @@
+#!/bin/sh
+
+NAME='foodiology'
+DJANGODIR=/webapps/foodiology/Foodiology_BackEnd
+SOCKFILE=/webapps/foodiology/run/gunicorn.sock
+USER=foodiologyuser
+GROUP=webapps
+NUM_WORKERS=3
+DJANGO_SETTINGS_MODULE=Foodiology_BackEnd.settings
+DJANGO_WSGI_MODULE=Foodiology_BackEnd.wsgi
+TIMEOUT=120
+
+cd $DJANGODIR
+source ../env/bin/activate
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+exec ../env/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+--name $NAME \
+--workers $NUM_WORKERS \
+--timeout $TIMEOUT \
+--user=$USER --group=$GROUP \
+--bind=unix:$SOCKFILE \
+--log-level=debug \
+--log-file=-

@@ -1,0 +1,24 @@
+
+> foodiology-test@0.0.0 dev
+> vite
+
+Port 5173 is in use, trying another one...
+Port 5174 is in use, trying another one...
+Port 5175 is in use, trying another one...
+
+  VITE v5.2.10  ready in 953 ms
+
+  ➜  Local:   http://localhost:5176/
+  ➜  Network: use --host to expose
+
+> foodiology-test@0.0.0 dev
+> vite
+
+Port 5173 is in use, trying another one...
+Port 5174 is in use, trying another one...
+Port 5175 is in use, trying another one...
+
+  VITE v5.2.10  ready in 1275 ms
+
+  ➜  Local:   http://localhost:5176/
+  ➜  Network: use --host to expose
