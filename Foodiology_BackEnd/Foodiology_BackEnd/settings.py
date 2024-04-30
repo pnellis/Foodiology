@@ -1,5 +1,6 @@
 from datetime import timedelta
 from pathlib import Path
+import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -115,7 +116,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "foodiology_final",
         'USER': "admin",
-        'PASSWORD': "Foodiology123",
+        'PASSWORD': config.pw,
         'HOST': "foodiology.cxwwgy2c4rn6.us-east-1.rds.amazonaws.com",
         'PORT': "3306",
     }
